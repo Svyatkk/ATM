@@ -9,8 +9,55 @@ datasource db {
   provider = "postgresql"
 }
 
+enum TransactionType {
+  WITHDRAWAL
+  DEPOSIT
+  TRANSFER
+}
+
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  name     String
+  accounts Account[]
+}
+
+model Account {
+  id            Int    @id @default(autoincrement())
+  accountNumber String @unique
+  balance       Float  @default(0)
+  userId        Int
+
+  user         User          @relation(fields: [userId], references: [id])
+  cards        Card[]
+  transactions Transaction[]
+}
+
+model Card {
+  id         Int      @id @default(autoincrement())
+  number     String   @unique
+  pinHash    String
+  expiryDate DateTime
+
+  accountId Int
+  account   Account @relation(fields: [accountId], references: [id])
+}
+
+model Transaction {
+  id        Int             @id @default(autoincrement())
+  amount    Float
+  type      TransactionType
+  createdAt DateTime        @default(now())
+
+  accountId Int
+  account   Account @relation(fields: [accountId], references: [id])
+  atmId     Int?
+  atm       ATM?    @relation(fields: [atmId], references: [id])
+}
+
+model ATM {
+  id           Int           @id @default(autoincrement())
+  address      String
+  cashBalance  Float         @default(1000000)
+  transactions Transaction[]
 }
