@@ -7,7 +7,6 @@ import { PrismaPg } from '@prisma/adapter-pg'
 const app = new Hono()
 
 
-
 const connectionString = process.env.DATABASE_URL
 const pool = new Pool({ connectionString })
 
