@@ -8,12 +8,11 @@ services:
     ports:
       - "3001:3001"
     environment:
-      # URL для підключення до бази даних зсередини мережі Docker
       - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydb?schema=public
     depends_on:
       - db
     volumes:
-      - ./server/src:/app/src # Для hot-reload під час розробки (опціонально)
+      - ./server/src:/app/src
 
   db:
     image: postgres:15-alpine
