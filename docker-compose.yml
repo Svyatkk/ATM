@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      # URL для підключення до бази даних зсередини мережі Docker
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydb?schema=public
+    depends_on:
+      - db
+    volumes:
+      - ./server/src:/app/src # Для hot-reload під час розробки (опціонально)
+
+  db:
+    image: postgres:15-alpine
+    container_name: atm_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: atm_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
