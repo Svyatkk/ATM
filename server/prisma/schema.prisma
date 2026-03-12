@@ -9,55 +9,63 @@ datasource db {
   provider = "postgresql"
 }
 
-enum TransactionType {
-  WITHDRAWAL
-  DEPOSIT
-  TRANSFER
+enum Role {
+  GUEST
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
 }
 
 model User {
   id       Int       @id @default(autoincrement())
   email    String    @unique
   name     String
-  accounts Account[]
+  phone    String?
+  role     Role      @default(GUEST)
+  bookings Booking[]
 }
 
-model Account {
+model Hotel {
+  id        Int        @id @default(autoincrement())
+  name      String
+  address   String
+  city      String
+  roomTypes RoomType[]
+}
+
+model RoomType {
   id            Int    @id @default(autoincrement())
-  accountNumber String @unique
-  balance       Float  @default(0)
-  userId        Int
-
-  user         User          @relation(fields: [userId], references: [id])
-  cards        Card[]
-  transactions Transaction[]
+  name          String
+  pricePerNight Float
+  capacity      Int
+  hotelId       Int
+  hotel         Hotel  @relation(fields: [hotelId], references: [id])
+  rooms         Room[]
 }
 
-model Card {
-  id         Int      @id @default(autoincrement())
-  number     String   @unique
-  pinHash    String
-  expiryDate DateTime
-
-  accountId Int
-  account   Account @relation(fields: [accountId], references: [id])
+model Room {
+  id         Int       @id @default(autoincrement())
+  roomNumber String
+  roomTypeId Int
+  roomType   RoomType  @relation(fields: [roomTypeId], references: [id])
+  bookings   Booking[]
 }
 
-model Transaction {
-  id        Int             @id @default(autoincrement())
-  amount    Float
-  type      TransactionType
-  createdAt DateTime        @default(now())
+model Booking {
+  id         Int           @id @default(autoincrement())
+  checkIn    DateTime
+  checkOut   DateTime
+  totalPrice Float
+  status     BookingStatus @default(PENDING)
+  createdAt  DateTime      @default(now())
 
-  accountId Int
-  account   Account @relation(fields: [accountId], references: [id])
-  atmId     Int?
-  atm       ATM?    @relation(fields: [atmId], references: [id])
-}
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
-model ATM {
-  id           Int           @id @default(autoincrement())
-  address      String
-  cashBalance  Float         @default(1000000)
-  transactions Transaction[]
+  roomId Int
+  room   Room @relation(fields: [roomId], references: [id])
 }
