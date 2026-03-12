@@ -29,11 +29,30 @@ model User {
   bookings Booking[]
 }
 
+model Country {
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  cities City[]
+}
+
+model City {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  countryId Int
+  country   Country @relation(fields: [countryId], references: [id])
+
+  hotels Hotel[]
+}
+
 model Hotel {
-  id        Int        @id @default(autoincrement())
-  name      String
-  address   String
-  city      String
+  id      Int    @id @default(autoincrement())
+  name    String
+  address String
+
+  cityId Int
+  city   City @relation(fields: [cityId], references: [id])
+
   roomTypes RoomType[]
 }
 
@@ -42,14 +61,16 @@ model RoomType {
   name          String
   pricePerNight Float
   capacity      Int
-  hotelId       Int
-  hotel         Hotel  @relation(fields: [hotelId], references: [id])
-  rooms         Room[]
+
+  hotelId Int
+  hotel   Hotel  @relation(fields: [hotelId], references: [id])
+  rooms   Room[]
 }
 
 model Room {
-  id         Int       @id @default(autoincrement())
+  id         Int    @id @default(autoincrement())
   roomNumber String
+
   roomTypeId Int
   roomType   RoomType  @relation(fields: [roomTypeId], references: [id])
   bookings   Booking[]
