@@ -3,19 +3,21 @@ import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client'
 import { Pool } from 'pg'
 import { PrismaPg } from '@prisma/adapter-pg'
-
+import { jwt } from 'hono/jwt'
+import authrouter from './routes/auth.routes'
 const app = new Hono()
 
-
+const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key_for_dev';
 const connectionString = process.env.DATABASE_URL
 const pool = new Pool({ connectionString })
-
-
-
-
 const adapter = new PrismaPg(pool)
 
-const prisma = new PrismaClient({ adapter })
+export const prisma = new PrismaClient({ adapter })
+
+
+app.route('/api/auth', authrouter)
+
+
 
 app.get('/', (c) => {
     return c.text('Привіт, сервер на Hono + Prisma 7 працює!')
