@@ -23,6 +23,7 @@ export default function SearchingPanel() {
                     <input type="month" />
                 </label>
 
+
                 <label className={styles.panelCountPeople} >
                     <span>
                         <Image height={30} width={30} src={'/img/profileLogo.png'} alt='Bed'>
