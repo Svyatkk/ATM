@@ -26,22 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <div className={styles.green}>
+          {children}
 
-        <header className={styles.headerBackground}>
-          <div className={styles.container}>
-            <NavBar />
-
-            <h1>Знайдіть помешкання для наступної подорожі</h1>
-
-          </div>
-        </header>
-
-        <div className={styles.mainContent}>
-          <div className={styles.container}>
-
-            {children}
-          </div>
         </div>
+
 
       </body>
     </html>

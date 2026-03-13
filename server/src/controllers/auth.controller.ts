@@ -14,6 +14,9 @@ export const register = async (c: Context) => {
     }
 };
 
+
+
+
 export const login = async (c: Context) => {
     try {
         const body = await c.req.json();
@@ -30,3 +33,4 @@ export const login = async (c: Context) => {
         return c.json({ message: error.message || 'Помилка сервера' }, 400);
     }
 };
+

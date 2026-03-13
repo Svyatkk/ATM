@@ -8,15 +8,21 @@
 
 }
 
+.heart {
+    cursor: pointer;
+
+}
+
 .useBlock {
-    max-width: 200px;
+    max-width: 550px;
     width: 100%;
     height: 100%;
     border: 1px solid white;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 5px
+    gap: 5px;
+
 }
 
 .userAvatar {
@@ -25,6 +31,8 @@
     width: 40px;
     border-radius: 50%;
 }
+
+
 
 .text {
     height: 40px;
@@ -41,6 +49,24 @@
 .text p {
     margin: 0;
     padding: 0;
+}
 
+.useBlock button {
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    border: 1px solid white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: 0.3s;
+
+}
+
+.useBlock button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
 
 }

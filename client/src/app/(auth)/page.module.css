@@ -1,0 +1,43 @@
+.layoutContainer {
+    height: 50vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.section1 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+
+.section2 {
+    width: 50%;
+    height: 100%;
+    background-color: #003b95;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.section2 p {
+    font-size: 80px;
+    font-weight: bold;
+
+}
