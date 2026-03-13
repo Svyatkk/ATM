@@ -21,12 +21,16 @@ enum BookingStatus {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  email    String    @unique
-  name     String
-  phone    String?
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String
+  phone String?
+
   role     Role      @default(GUEST)
   bookings Booking[]
+
+  favoriteHotels Hotel[] @relation("UserFavoriteHotels")
+  favoriteCities City[]  @relation("UserFavoriteCities")
 }
 
 model Country {
@@ -43,17 +47,22 @@ model City {
   country   Country @relation(fields: [countryId], references: [id])
 
   hotels Hotel[]
+
+  favoritedBy User[] @relation("UserFavoriteCities")
 }
 
 model Hotel {
-  id      Int    @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   name    String
   address String
+  animals Boolean?
 
   cityId Int
   city   City @relation(fields: [cityId], references: [id])
 
   roomTypes RoomType[]
+
+  favoritedBy User[] @relation("UserFavoriteHotels")
 }
 
 model RoomType {
@@ -77,12 +86,15 @@ model Room {
 }
 
 model Booking {
-  id         Int           @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   checkIn    DateTime
   checkOut   DateTime
   totalPrice Float
-  status     BookingStatus @default(PENDING)
-  createdAt  DateTime      @default(now())
+
+  childrenCount Int
+
+  status    BookingStatus @default(PENDING)
+  createdAt DateTime      @default(now())
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
