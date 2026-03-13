@@ -1,0 +1,56 @@
+.searchingPanels {
+    width: 100%;
+    position: absolute;
+    height: 70px;
+    top: -30px;
+    align-items: stretch;
+    display: flex;
+    background-color: rgb(238, 188, 136);
+    align-items: center;
+    gap: 3px;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.searchingPanels label {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    color: black;
+    height: 97%;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.searchingPanels label span {
+    margin: 5px;
+
+}
+
+.searchingPanels input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    outline: none;
+    box-sizing: border-box;
+
+}
+
+.find {
+    height: 97%;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    width: 20%;
+    background-color: #003b95;
+    border-radius: 5px;
+    border: none;
+
+}
