@@ -32,12 +32,13 @@ export default function Register() {
                 router.refresh()
 
             }
+            else {
+                const errorData = await response.json();
+                alert(`Помилка: ${errorData.message}`);
+            }
         } catch (error) {
             console.log(error)
-
         }
-
-
     }
 
     return (

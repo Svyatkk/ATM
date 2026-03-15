@@ -2,29 +2,34 @@
 import styles from './page.module.css'
 import { useState } from 'react'
 import { IUser } from '@/types/user.interface'
-
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
 
-    const [user, setUser] = useState<IUser | null>()
+    const route = useRouter()
 
     const [password, setPassword] = useState<string>("")
     const [email, setEmail] = useState<string>("")
 
     const handleLogin = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/auth/register`, {
+            const response = await fetch(`http://localhost:3001/api/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: 'include',
                 body: JSON.stringify({ email: email, password: password })
             })
 
             if (response.ok) {
                 const data = await response.json()
-                setUser(data)
-
+                route.push('/')
+                route.refresh();
+            }
+            else {
+                const errorData = await response.json();
+                alert(`Помилка: ${errorData.message}`);
             }
         } catch (error) {
             console.log(error)

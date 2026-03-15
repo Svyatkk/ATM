@@ -7,17 +7,13 @@
     justify-content: center;
     font-family: var(--font-geist-sans);
     background-color: white;
-
 }
-
 
 .headerBackground {
     background-color: #003b95;
     width: 100%;
     padding-bottom: 40px;
     border: 1px solid black;
-
-
 }
 
 .mainContent {

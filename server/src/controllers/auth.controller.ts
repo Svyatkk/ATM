@@ -41,6 +41,7 @@ export const login = async (c: Context) => {
             path: '/',
             maxAge: 60 * 60 * 24,
         });
+        return c.json({ message: 'Успішний вхід!', userId: user.id }, 200);
 
     } catch (error: any) {
         console.log(error);
