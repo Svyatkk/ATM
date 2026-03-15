@@ -1,0 +1,59 @@
+.container {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.swiper {
+    border: 1px solid red;
+    height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.slide1 {
+    display: flex;
+    flex-direction: space;
+    padding: 10px;
+}
+
+.slide1 h2 {
+    color: black;
+}
+
+.type {
+    border: 1px solid black;
+}
+
+.blocks {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid red;
+    margin-top: 20px;
+}
+
+.block {
+    border: 1px solid black;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.block.active {
+    border: 2px solid blue;
+}
+
+
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.block h2 {
+    color: black;
+}
