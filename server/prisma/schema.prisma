@@ -14,6 +14,12 @@ enum Role {
   ADMIN
 }
 
+enum HouseType {
+  Apartment
+  Home
+  House
+}
+
 enum BookingStatus {
   PENDING
   CONFIRMED
@@ -30,7 +36,7 @@ model User {
   role     Role      @default(GUEST)
   bookings Booking[]
 
-  favoriteHotels Hotel[] @relation("UserFavoriteHotels")
+  favoriteHouses House[] @relation("UserFavoriteHouses")
   favoriteCities City[]  @relation("UserFavoriteCities")
 }
 
@@ -47,23 +53,22 @@ model City {
   countryId Int
   country   Country @relation(fields: [countryId], references: [id])
 
-  hotels Hotel[]
+  Houses House[]
 
   favoritedBy User[] @relation("UserFavoriteCities")
 }
 
-model Hotel {
-  id      Int      @id @default(autoincrement())
-  name    String
-  address String
-  animals Boolean?
-
-  cityId Int
-  city   City @relation(fields: [cityId], references: [id])
-
+model House {
+  id        Int        @id @default(autoincrement())
+  name      String
+  address   String
+  animals   Boolean?
+  type      HouseType
+  cityId    Int
+  city      City       @relation(fields: [cityId], references: [id])
   roomTypes RoomType[]
 
-  favoritedBy User[] @relation("UserFavoriteHotels")
+  favoritedBy User[] @relation("UserFavoriteHouses")
 }
 
 model RoomType {
@@ -72,8 +77,8 @@ model RoomType {
   pricePerNight Float
   capacity      Int
 
-  hotelId Int
-  hotel   Hotel  @relation(fields: [hotelId], references: [id])
+  HouseId Int
+  House   House  @relation(fields: [HouseId], references: [id])
   rooms   Room[]
 }
 
