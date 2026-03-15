@@ -6,5 +6,4 @@ const authrouter = new Hono()
 authrouter.post('/register', register)
 authrouter.post('/login', login)
 
-
 export default authrouter

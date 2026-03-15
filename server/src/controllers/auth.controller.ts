@@ -1,11 +1,22 @@
 import { Context } from 'hono';
 import * as authService from '../services/service.auth';
+import { setCookie } from 'hono/cookie'
 
 export const register = async (c: Context) => {
     try {
         const body = await c.req.json();
 
         const newUser = await authService.registerUser(body);
+
+        const { token } = await authService.loginUser({ email: body.email, password: body.password });
+
+        setCookie(c, 'token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'Lax',
+            path: '/',
+            maxAge: 60 * 60 * 24,
+        })
 
         return c.json({ message: 'Реєстрація успішна!', userId: newUser.id }, 201);
     } catch (error: any) {
@@ -23,11 +34,14 @@ export const login = async (c: Context) => {
 
         const { user, token } = await authService.loginUser(body);
 
-        return c.json({
-            message: 'Вхід успішний!',
-            userId: user.id,
-            token: token
-        }, 200);
+        setCookie(c, 'token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'Lax',
+            path: '/',
+            maxAge: 60 * 60 * 24,
+        });
+
     } catch (error: any) {
         console.log(error);
         return c.json({ message: error.message || 'Помилка сервера' }, 400);

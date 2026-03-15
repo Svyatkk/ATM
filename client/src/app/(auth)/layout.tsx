@@ -16,7 +16,6 @@ export default function Layout({ children }: Props) {
 
                     </div>
 
-
                     <div className={styles.section2}>
                         <p>Advanced</p>
                         <p>Tourist</p>
@@ -26,8 +25,6 @@ export default function Layout({ children }: Props) {
                 </div>
 
             </div>
-
-
         </>
     )
 }
