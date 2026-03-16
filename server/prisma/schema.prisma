@@ -38,6 +38,7 @@ model User {
 
   favoriteHouses House[] @relation("UserFavoriteHouses")
   favoriteCities City[]  @relation("UserFavoriteCities")
+  ownedhouses    House[] @relation("HouseOwner")
 }
 
 model Country {
@@ -58,24 +59,38 @@ model City {
   favoritedBy User[] @relation("UserFavoriteCities")
 }
 
-model House {
-  id        Int        @id @default(autoincrement())
-  name      String
-  address   String
-  animals   Boolean?
-  type      HouseType
-  cityId    Int
-  city      City       @relation(fields: [cityId], references: [id])
-  roomTypes RoomType[]
+model Image {
+  id         Int       @id @default(autoincrement())
+  url        String
+  roomType   RoomType? @relation(fields: [roomTypeId], references: [id])
+  roomTypeId Int?
+  house      House?    @relation(fields: [houseId], references: [id])
+  houseId    Int?
+}
 
-  favoritedBy User[] @relation("UserFavoriteHouses")
+model House {
+  id          Int        @id @default(autoincrement())
+  name        String
+  address     String
+  animals     Boolean?
+  type        HouseType
+  cityId      Int
+  city        City       @relation(fields: [cityId], references: [id])
+  roomTypes   RoomType[]
+  favoritedBy User[]     @relation("UserFavoriteHouses")
+
+  owner  User @relation("HouseOwner", fields: [userId], references: [id])
+  userId Int
+
+  images Image[]
 }
 
 model RoomType {
-  id            Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   name          String
   pricePerNight Float
   capacity      Int
+  images        Image[]
 
   HouseId Int
   House   House  @relation(fields: [HouseId], references: [id])
