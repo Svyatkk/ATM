@@ -8,6 +8,7 @@ export const register = async (c: Context) => {
 
         const newUser = await authService.registerUser(body);
 
+
         const { token } = await authService.loginUser({ email: body.email, password: body.password })
 
         setCookie(c, 'token', token, {
