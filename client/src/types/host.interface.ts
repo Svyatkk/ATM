@@ -1,4 +1,5 @@
 import { IUser } from "./user.interface"
+import { IRoomType } from "./roomtype.interface";
 export type HostType = { name: "Apartment", hrefimg: '/img/apartlogo.jpg' }
     | { name: "Home", hrefimg: '/img/homelogo.png' } |
 { name: "Hotel", hrefimg: '/img/hotellogo.png' };
@@ -11,11 +12,13 @@ export type IHost = {
     animals: boolean,
     type: HostType,
     city: string,
-    roomType: string,
+    roomType: IRoomType,
     favouriteBy: IUser[]
 }
 
 export const hostTypeOptions: HostType[] = [{ name: "Apartment", hrefimg: '/img/apartlogo.jpg' }, { name: "Home", hrefimg: '/img/homelogo.png' }, { name: "Hotel", hrefimg: '/img/hotellogo.png' }];
+
+
 
 
 //model House {
