@@ -12,8 +12,11 @@ export const getProfile = async (c: Context<{ Variables: Variables }>) => {
 
         return c.json({ user }, 200);
 
+
     } catch (error: any) {
         console.log(error);
         return c.json({ message: error.message || 'Помилка отримання профілю' }, 400);
     }
+
+
 };
