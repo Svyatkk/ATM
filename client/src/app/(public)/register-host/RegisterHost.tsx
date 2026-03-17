@@ -13,7 +13,7 @@ import { IUser } from '@/types/user.interface'
 import Image from 'next/image'
 import { Iroom } from '@/types/room.interface'
 import { IRoomType } from '@/types/roomtype.interface'
-
+import { ICountry } from '@/types/country.interface'
 
 export default function RegisterHost() {
 
@@ -23,6 +23,7 @@ export default function RegisterHost() {
     const [animals, setanimals] = useState<IHost['animals'] | null>()
     const [favouriteBy, setFavouriteBy] = useState<IUser | null>()
     const [city, setCity] = useState<IHost['city'] | null>()
+    const [country, setCountry] = useState<ICountry['name']>()
 
 
 
@@ -35,6 +36,50 @@ export default function RegisterHost() {
 
 
 
+    const registerhost = async () => {
+        try {
+
+
+            const payload = {
+                name,
+                address,
+                animals: animals || false,
+                type,
+                country: country,
+                city: city,
+                roomTypes: [
+                    {
+                        name: roomtype,
+                        pricePerNight: pricePerNight,
+                        capacity: capacity || 1,
+                        rooms: {
+                            create: [
+                                { roomNumber: roomNumber }
+                            ]
+                        }
+                    }
+                ]
+            }
+
+            const response = await fetch(`http://localhost:3001/api/registerhost/registerHost`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                },
+                credentials: 'include',
+                body: JSON.stringify(payload)
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                console.log("Успішно створено:", data)
+            } else {
+                console.error("Помилка:", await response.json())
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
     return (
@@ -80,7 +125,14 @@ export default function RegisterHost() {
                                     }} className={styles.inputReg} type="text" />
                                 </label>
                             </div>
-
+                            <div className={styles.row}>
+                                <h3>Введіть країну</h3>
+                                <label className={styles.labelReg}>
+                                    <input onChange={(e) => {
+                                        setCountry(e.target.value)
+                                    }} className={styles.inputReg} type="text" />
+                                </label>
+                            </div>
                             <div className={styles.row}>
                                 <h3>Введіть адресу проживання</h3>
                                 <label className={styles.labelReg}>
@@ -144,7 +196,7 @@ export default function RegisterHost() {
                         </div>
 
 
-                        <button className={styles.register}>Register</button>
+                        <button onClick={registerhost} className={styles.register}>Register</button>
                     </SwiperSlide>
 
                     <SwiperSlide className={styles.slide3}>

@@ -5,9 +5,3 @@ export type ICountry = {
     cities: ICity
 }
 
-
-// model Country {
-//   id     Int    @id @default(autoincrement())
-//   name   String @unique
-//   cities City[]
-// }

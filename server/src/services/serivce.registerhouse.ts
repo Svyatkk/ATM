@@ -1,17 +1,8 @@
+import { connect } from 'node:http2'
 import { prisma } from '../index'
 
 
-//model RoomType {
-//   id            Int     @id @default(autoincrement())
-//   name          String
-//   pricePerNight Float
-//   capacity      Int
-//   images        Image[]
 
-//   HouseId Int
-//   House   House  @relation(fields: [HouseId], references: [id])
-//   rooms   Room[]
-// }
 
 export const createRoomType = async (data: any) => {
 
@@ -42,22 +33,11 @@ export const createRoom = async (data: any) => {
 }
 
 
-// model Room {
-//   id         Int    @id @default(autoincrement())
-//   roomNumber String
-
-//   roomTypeId Int
-//   roomType   RoomType  @relation(fields: [roomTypeId], references: [id])
-//   bookings   Booking[]
-// }
 
 
+export const createHouse = async (data: any, userId: number) => {
 
-
-export const createHouse = async (data: any) => {
-
-    const { name, address, animals, type, cityId, userId, roomTypes } = data
-
+    const { name, address, animals, type, city, roomTypes } = data
 
     const house = await prisma.house.create({
         data: {
@@ -66,9 +46,24 @@ export const createHouse = async (data: any) => {
             animals,
             type,
 
-            cityId,
+            owner: {
+                connect: { id: userId }
+            },
 
-            userId,
+            city: {
+                connectOrCreate: {
+                    where: { name: city },
+                    create: {
+                        name: city,
+                        country: {
+                            connectOrCreate: {
+                                where: { name: data.country },
+                                create: { name: data.country }
+                            }
+                        }
+                    }
+                }
+            },
 
             roomTypes: {
                 create: roomTypes
