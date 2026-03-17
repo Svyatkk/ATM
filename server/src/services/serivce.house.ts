@@ -57,6 +57,23 @@ export const createHouse = async (data: any, userId: number) => {
     return house;
 }
 
+export const getHouseByid = async (id: number) => {
+    const house = await prisma.house.findUnique({
+        where: {
+            id: id
+        },
+        include: {
+            roomTypes: {
+                include: {
+                    rooms: true
+                }
+            }
+        }
+    })
+
+    return house
+}
+
 
 export const getHouses = async () => {
 
@@ -65,3 +82,5 @@ export const getHouses = async () => {
 
     return house
 }
+
+

@@ -28,6 +28,9 @@ app.use('/api/*', cors({
 
 app.route('/api/auth', authrouter)
 app.route('/api/users', userouter)
+
+
+
 app.route('/api/registerhost', registerHouserRouter)
 app.route('/api/houses', registerHouserRouter)
 

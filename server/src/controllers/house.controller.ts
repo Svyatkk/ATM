@@ -32,16 +32,30 @@ export const registerHost = async (c: Context) => {
 }
 
 export const gethosts = async (c: Context) => {
-
     try {
-
-
         const hosue = await registerhouse.getHouses()
         return c.json(hosue)
 
 
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const gethousebyid = async (c: Context) => {
+    try {
+        const id = Number(c.req.param('id'))
+        const house = await registerhouse.getHouseByid(id)
+
+        if (!house) {
+            return c.json({ message: 'Житло не знайдено' }, 404)
+        }
+
+        return c.json(house)
+    } catch (error) {
+        console.log(error)
+
+        return c.json({ message: 'Помилка при отриманні житла' }, 500)
     }
 }
 
