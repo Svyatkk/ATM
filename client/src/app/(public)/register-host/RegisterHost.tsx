@@ -25,9 +25,6 @@ export default function RegisterHost() {
     const [city, setCity] = useState<IHost['city'] | null>()
     const [country, setCountry] = useState<ICountry['name']>()
 
-
-
-
     const [pricePerNight, setPricePerNight] = useState<IRoomType['pricePerNight'] | null>()
     const [capacity, setCapacity] = useState<IRoomType['capacity'] | null>()
     const [roomtype, setRoomType] = useState<IRoomType['name'] | null>()
@@ -38,7 +35,6 @@ export default function RegisterHost() {
 
     const registerhost = async () => {
         try {
-
 
             const payload = {
                 name,
@@ -162,7 +158,6 @@ export default function RegisterHost() {
                             </div>
                         </div>
                     </SwiperSlide>
-
 
                     <SwiperSlide className={styles.slide3}>
                         <div className={styles.container2}>

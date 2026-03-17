@@ -9,7 +9,7 @@ import { cors } from 'hono/cors'
 
 import authrouter from './routes/auth.routes'
 import userouter from './routes/user.routes'
-import registerHouserRouter from './routes/resgisterhouse'
+import registerHouserRouter from './routes/house.route'
 const app = new Hono()
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key_for_dev';
@@ -29,7 +29,7 @@ app.use('/api/*', cors({
 app.route('/api/auth', authrouter)
 app.route('/api/users', userouter)
 app.route('/api/registerhost', registerHouserRouter)
-
+app.route('/api/houses', registerHouserRouter)
 
 
 

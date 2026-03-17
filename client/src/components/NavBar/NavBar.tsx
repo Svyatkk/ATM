@@ -1,10 +1,31 @@
 'use client'
 import styles from './NavBar.module.css'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { IUser } from '@/types/user.interface'
 export default function NavBar() {
+
+    const [user, setUser] = useState<IUser | null>()
+
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/api/users/profile`, {
+            credentials: 'include'
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Помилка авторизації');
+                return res.json();
+            })
+            .then(data => {
+                setUser(data.user);
+            })
+            .catch(err => console.log(err));
+
+
+    }, [])
+
     return (
         <>
-
 
             <nav className={styles.nav}>
                 <h1>ATM</h1>
@@ -15,7 +36,8 @@ export default function NavBar() {
                     <span className={styles.userAvatar}></span>
 
                     <div className={styles.text}>
-                        <p>Username</p>
+
+                        <p>{user?.name}</p>
                         <p>text</p>
                     </div>
                 </div>

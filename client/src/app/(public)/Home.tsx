@@ -4,35 +4,34 @@ import styles from './page.module.css'
 import SearchingPanel from '@/components/SearchingPanel/SearchingPanel'
 import { useEffect, useState } from 'react'
 import { IUser } from '@/types/user.interface'
+import { IHost } from '@/types/host.interface'
+import BlockHotel from '@/components/BlockHotel/BlockHotel'
+
 
 export default function Home() {
-    const [user, setUser] = useState<IUser | null>()
+    const [blocksHotel, setBlockHotel] = useState<IHost[] | null>()
 
     useEffect(() => {
-        fetch(`http://localhost:3001/api/users/profile`, {
-            credentials: 'include'
-        })
-            .then(res => {
-                if (!res.ok) throw new Error('Помилка авторизації');
-                return res.json();
-            })
-            .then(data => {
-                setUser(data.user);
-            })
-            .catch(err => console.log(err));
-
+        fetch(`http://localhost:3001/api/houses`)
+            .then(res => res.json())
+            .then(data => setBlockHotel(data))
+            .then(err => console.log(err))
 
     }, [])
+
+
 
     return (
         <>
             <div className={styles.page}>
 
                 <SearchingPanel></SearchingPanel>
+                {blocksHotel?.map((item, index) => {
+                    return <BlockHotel host={item} key={index}></BlockHotel>
+                })}
 
 
 
-                Вітаємо {user?.name}
 
             </div>
         </>

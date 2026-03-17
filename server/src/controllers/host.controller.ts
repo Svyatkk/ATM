@@ -1,5 +1,9 @@
 import { Context } from 'hono'
-import * as registerhouse from '../services/serivce.registerhouse'
+import * as registerhouse from '../services/serivce.house'
+import { JWTPayload } from 'hono/utils/jwt/types'
+
+
+
 
 export const registerHost = async (c: Context) => {
     try {
@@ -26,3 +30,39 @@ export const registerHost = async (c: Context) => {
         return c.json({ message: error.message || 'Помилка сервера' }, 400);
     }
 }
+
+export const gethosts = async (c: Context) => {
+
+    try {
+
+
+        const hosue = await registerhouse.getHouses()
+        return c.json(hosue)
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// import * as userService from '../services/service.user';
+
+// type Variables = {
+//     jwtPayload: any;
+// };
+// export const getProfile = async (c: Context<{ Variables: Variables }>) => {
+//     try {
+//         const payload = c.get('jwtPayload');
+
+//         const user = await userService.getUserById(payload.userId);
+
+//         return c.json({ user }, 200);
+
+
+//     } catch (error: any) {
+//         console.log(error);
+//         return c.json({ message: error.message || 'Помилка отримання профілю' }, 400);
+//     }
+
+
+// };

@@ -2,23 +2,6 @@ import { connect } from 'node:http2'
 import { prisma } from '../index'
 
 
-
-
-export const createRoomType = async (data: any) => {
-
-    const { name, pricePerNight, capacity, HouseId } = data
-
-
-    const roomType = await prisma.roomType.create({
-        data: {
-            name, pricePerNight, capacity, HouseId,
-        }
-    })
-    return roomType
-}
-
-
-
 export const createRoom = async (data: any) => {
     const { roomNumber, roomTypeId } = data
 
@@ -72,4 +55,13 @@ export const createHouse = async (data: any, userId: number) => {
     })
 
     return house;
+}
+
+
+export const getHouses = async () => {
+
+    const house = await prisma.house.findMany()
+
+
+    return house
 }
