@@ -11,9 +11,8 @@ type Props = {
 export default function BlockHotel({ host }: Props) {
     const route = useRouter()
 
-
-
     const [fav, setFav] = useState(false)
+
 
     const handleAdddFav = async () => {
 

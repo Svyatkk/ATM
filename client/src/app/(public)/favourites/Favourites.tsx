@@ -4,8 +4,6 @@ import { useEffect } from "react"
 import { useState } from "react"
 import BlockHotel from "@/components/BlockHotel/BlockHotel"
 
-
-
 export default function Favourites() {
 
     const [hotels, setHotels] = useState<IHost[] | null>()
@@ -26,16 +24,11 @@ export default function Favourites() {
             .catch(err => console.log(err));
     }, []);
 
-
-
-
     return (
         <>
             {hotels?.map((item, index) => {
                 return <BlockHotel host={item} key={index}></BlockHotel>
             })}
-
-
         </>
     )
 }
