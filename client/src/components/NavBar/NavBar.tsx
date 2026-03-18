@@ -3,9 +3,13 @@ import styles from './NavBar.module.css'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { IUser } from '@/types/user.interface'
+
+import { useRouter } from 'next/navigation'
 export default function NavBar() {
 
     const [user, setUser] = useState<IUser | null>()
+    const router = useRouter()
+
 
 
     useEffect(() => {
@@ -27,12 +31,15 @@ export default function NavBar() {
     return (
         <>
 
+
             <nav className={styles.nav}>
                 <h1>ATM</h1>
 
                 <div className={styles.useBlock}>
                     <button>Зареєструвати власне помешкання</button>
-                    <Image className={styles.heart} height={32} width={32} alt='heart' src={'/img/heart.png'}></Image>
+                    <Image className={styles.heart} onClick={() => {
+                        router.push('/favourites')
+                    }} height={32} width={32} alt='heart' src={'/img/heart.png'}></Image>
                     <span className={styles.userAvatar}></span>
 
                     <div className={styles.text}>

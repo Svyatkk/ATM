@@ -19,8 +19,6 @@ const adapter = new PrismaPg(pool)
 export const prisma = new PrismaClient({ adapter })
 
 
-
-
 app.use('/api/*', cors({
     origin: 'http://localhost:3000',
     credentials: true,
@@ -28,7 +26,6 @@ app.use('/api/*', cors({
 
 app.route('/api/auth', authrouter)
 app.route('/api/users', userouter)
-
 
 
 app.route('/api/registerhost', registerHouserRouter)
