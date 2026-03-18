@@ -9,6 +9,7 @@ export default async function HotelPage({ params }: Props) {
 
     const res = await fetch(`http://localhost:3001/api/houses/${id}`);
 
+
     if (!res.ok) {
         return <div>Помилка: Житло не знайдено</div>;
     }

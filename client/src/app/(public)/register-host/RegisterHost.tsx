@@ -14,7 +14,7 @@ import Image from 'next/image'
 import { Iroom } from '@/types/room.interface'
 import { IRoomType } from '@/types/roomtype.interface'
 import { ICountry } from '@/types/country.interface'
-
+import { houseService } from '@/api/house.service'
 export default function RegisterHost() {
 
     const [type, setType] = useState<HostType['name'] | null>()
@@ -31,11 +31,8 @@ export default function RegisterHost() {
 
     const [roomNumber, setRoomNumber] = useState<Iroom['roomNumber'] | null>()
 
-
-
     const registerhost = async () => {
         try {
-
             const payload = {
                 name,
                 address,
@@ -56,33 +53,16 @@ export default function RegisterHost() {
                     }
                 ]
             }
+            await houseService.registerHost(payload)
 
-            const response = await fetch(`http://localhost:3001/api/registerhost/registerHost`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                },
-                credentials: 'include',
-                body: JSON.stringify(payload)
-            })
-
-            if (response.ok) {
-                const data = await response.json()
-                console.log("Успішно створено:", data)
-            } else {
-                console.error("Помилка:", await response.json())
-            }
         } catch (error) {
             console.log(error)
         }
     }
 
-
     return (
         <>
-
             <div className={styles.container}>
-
                 <Swiper
                     className={styles.swiper}
                     modules={[Pagination]}
@@ -121,6 +101,7 @@ export default function RegisterHost() {
                                     }} className={styles.inputReg} type="text" />
                                 </label>
                             </div>
+
                             <div className={styles.row}>
                                 <h3>Введіть країну</h3>
                                 <label className={styles.labelReg}>
@@ -129,6 +110,7 @@ export default function RegisterHost() {
                                     }} className={styles.inputReg} type="text" />
                                 </label>
                             </div>
+
                             <div className={styles.row}>
                                 <h3>Введіть адресу проживання</h3>
                                 <label className={styles.labelReg}>
@@ -145,8 +127,6 @@ export default function RegisterHost() {
                                     <input onChange={(e) => { setCity(e.target.value) }} className={styles.inputReg} type="text" />
                                 </label>
                             </div>
-
-
                             <div className={styles.row}>
                                 <h3>Чи можна тваринам?</h3>
                                 <div className={styles.checkbox_wrapper_64}>
@@ -196,7 +176,6 @@ export default function RegisterHost() {
 
                     <SwiperSlide className={styles.slide3}>
                             //Пізніше щось додамо
-
 
                     </SwiperSlide>
                 </Swiper>

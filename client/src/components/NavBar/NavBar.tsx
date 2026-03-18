@@ -3,7 +3,7 @@ import styles from './NavBar.module.css'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { IUser } from '@/types/user.interface'
-
+import { userService } from '@/api/user.service'
 import { useRouter } from 'next/navigation'
 export default function NavBar() {
 
@@ -11,11 +11,8 @@ export default function NavBar() {
     const router = useRouter()
 
 
-
     useEffect(() => {
-        fetch(`http://localhost:3001/api/users/profile`, {
-            credentials: 'include'
-        })
+        userService.getUser()
             .then(res => {
                 if (!res.ok) throw new Error('Помилка авторизації');
                 return res.json();
@@ -24,9 +21,9 @@ export default function NavBar() {
                 setUser(data.user);
             })
             .catch(err => console.log(err));
-
-
     }, [])
+
+
 
     return (
         <>
