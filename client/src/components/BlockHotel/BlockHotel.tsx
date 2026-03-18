@@ -3,7 +3,7 @@ import styles from './BlockHotel.module.css'
 import { IHost } from '@/types/host.interface'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-
+import { userService } from '@/api/user.service'
 type Props = {
     host: IHost
 }
@@ -13,35 +13,18 @@ export default function BlockHotel({ host }: Props) {
 
     const [fav, setFav] = useState(false)
 
-
     const handleAdddFav = async () => {
 
         try {
-            const response = await fetch(`http://localhost:3001/api/users/profile/${host.id}`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                },
-                credentials: 'include'
-            })
-            if (response.ok) {
-                const data = await response.json()
-                setFav(true)
-            }
-            else {
-                const errorData = await response.json();
-                console.error("Помилка додавання:", errorData);
-                alert(errorData.message || 'Помилка');
-            }
-
+            await userService.addFav(host.id)
+            setFav(true);
+            alert('Додано в улюблені!');
         } catch (error) {
             console.log(error)
-
-
         }
 
+
     }
-    //userouter.post('/profile/:houseid', authMiddleware, addFavHouseCon)
 
     return (
 
@@ -63,16 +46,8 @@ export default function BlockHotel({ host }: Props) {
                     handleAdddFav()
                     alert('its ok')
 
-
-
                 }} className={`${styles.fav}${fav ? styles.active : ""}`}></div>
-
-
-
             </div>
-
-
-
         </div>
     )
 }

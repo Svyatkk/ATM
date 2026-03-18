@@ -10,20 +10,5 @@ export type ICity = {
     country: ICountry,
 
     houses: IHost[]
-
-
     favoritedBy: IUser[]
 }
-
-//model City {
-//   id   Int    @id @default(autoincrement())
-//   name String @unique
-
-//   countryId Int
-//   country   Country @relation(fields: [countryId], references: [id])
-
-//   Houses House[]
-
-//   favoritedBy User[] @relation("UserFavoriteCities")
-// }
-
