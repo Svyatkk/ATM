@@ -32,7 +32,6 @@ app.route('/api/registerhost', registerHouserRouter)
 app.route('/api/houses', registerHouserRouter)
 
 
-
 app.get('/', (c) => {
     return c.text('Привіт, сервер на Hono + Prisma 7 працює!')
 })
