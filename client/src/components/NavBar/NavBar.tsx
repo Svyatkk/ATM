@@ -5,30 +5,33 @@ import { useEffect, useState } from 'react'
 import { IUser } from '@/types/user.interface'
 import { userService } from '@/api/user.service'
 import { useRouter } from 'next/navigation'
+import SearchingPanel from '../SearchingPanel/SearchingPanel'
+import { useParams } from 'next/navigation'
+
 export default function NavBar() {
 
     const [user, setUser] = useState<IUser | null>()
     const router = useRouter()
 
+    const params = useParams()
+    const houseId = params?.id as number | undefined;
+
 
     useEffect(() => {
         userService.getUser()
-            .then(res => {
-                if (!res.ok) throw new Error('Помилка авторизації');
-                return res.json();
-            })
             .then(data => {
-                setUser(data.user);
+                setUser(data.user || data);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log('Помилка авторизації:', err);
+                setUser(null);
+            });
     }, [])
 
 
 
     return (
         <>
-
-
             <nav className={styles.nav}>
                 <h1>ATM</h1>
 
@@ -44,6 +47,10 @@ export default function NavBar() {
                         <p>{user?.name}</p>
                         <p>text</p>
                     </div>
+                </div>
+
+                <div className={styles.search}>
+                    <SearchingPanel number={houseId}></SearchingPanel>
                 </div>
             </nav >
         </>

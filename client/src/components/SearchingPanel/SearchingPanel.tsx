@@ -1,8 +1,30 @@
 'use client'
 
+import { IHost } from '@/types/host.interface';
 import styles from './SearchingPanel.module.css'
 import Image from 'next/image'
-export default function SearchingPanel() {
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { houseService } from '@/api/house.service';
+import { data } from 'react-router-dom';
+
+type Props = {
+    number?: number | null
+}
+
+export default function SearchingPanel({ number }: Props) {
+
+    const [currenthost, setcurrrentHost] = useState<IHost | null>()
+
+
+    useEffect(() => {
+        houseService.gethouseByid(Number(number))
+            .then(data => setcurrrentHost(data))
+            .catch(err => console.log(err))
+
+
+    }, [number])
+
     return (
         <>
             <div className={styles.searchingPanels}>
@@ -12,8 +34,11 @@ export default function SearchingPanel() {
                         <Image height={30} width={30} src={'/img/bedLogo.png'} alt='Bed'>
                         </Image>
                     </span>
+                    {currenthost?.name}
+
                     <input type="text" />
                 </label>
+
 
                 <label className={styles.panelData} >
                     <span>

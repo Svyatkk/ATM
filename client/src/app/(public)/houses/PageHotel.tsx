@@ -1,9 +1,9 @@
 'use client'
 import { IHost } from "@/types/host.interface"
-
 type Props = {
     children: IHost
 }
+
 
 
 export default function Hotel({ children }: Props) {
@@ -12,6 +12,7 @@ export default function Hotel({ children }: Props) {
         <>
 
             <div>
+
                 {children.name}
             </div>
         </>

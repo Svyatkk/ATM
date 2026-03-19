@@ -35,7 +35,6 @@ export const userService = {
         if (!response.ok) {
             throw new Error('Користувач не авторизований');
         }
-
         return response.json()
     },
 
@@ -48,9 +47,9 @@ export const userService = {
         if (!response.ok) {
             throw new Error('Помилка при показі обраних готелів');
         }
-
         return response.json()
     },
+
 
     async addFav(id: number) {
         const response = await fetch(`${BASE_URL}/users/profile/${id}`, {
@@ -62,7 +61,6 @@ export const userService = {
             const error = await response.json();
             throw new Error(error.message || 'Помилка додавання в улюблені');
         }
-
         return response.json()
 
     }

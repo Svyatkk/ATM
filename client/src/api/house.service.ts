@@ -24,6 +24,23 @@ export const houseService = {
     },
 
 
+    async gethouseByid(id: number) {
+
+        const response = await fetch(`${BASE_URL}/houses/${id}`, {
+            method: "GET",
+            ...fetchOptions
+        })
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Помилка отримання');
+        }
+        return response.json();
+    }
+
+
+
+
 
 }
 
