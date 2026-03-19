@@ -78,8 +78,6 @@ export const getHouseByid = async (id: number) => {
 export const getHouses = async () => {
 
     const house = await prisma.house.findMany()
-
-
     return house
 }
 

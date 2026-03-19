@@ -10,5 +10,6 @@ userouter.post('/profile/:houseid', authMiddleware, addFavHouseCon)
 userouter.get('/favourites', authMiddleware, showFavCon);
 
 
+
 export default userouter
 

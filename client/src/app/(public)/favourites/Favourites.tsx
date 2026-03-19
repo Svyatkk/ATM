@@ -12,7 +12,6 @@ export default function Favourites() {
 
     useEffect(() => {
         userService.showFav()
-            .then(res => res.json())
             .then(data => {
                 console.log("Мої улюблені:", data);
                 setHotels(data);

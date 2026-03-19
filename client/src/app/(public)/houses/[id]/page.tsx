@@ -1,5 +1,5 @@
 import PageHotel from '../PageHotel'
-
+import { houseService } from '@/api/house.service';
 type Props = {
     params: Promise<{ id: string }>
 }
@@ -7,14 +7,7 @@ type Props = {
 export default async function HotelPage({ params }: Props) {
     const { id } = await params;
 
-    const res = await fetch(`http://localhost:3001/api/houses/${id}`);
-
-
-    if (!res.ok) {
-        return <div>Помилка: Житло не знайдено</div>;
-    }
-
-    const hostData = await res.json();
+    const hostData = await houseService.gethouseByid(Number(id))
 
     return (
         <>

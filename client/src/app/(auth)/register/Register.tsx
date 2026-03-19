@@ -14,6 +14,7 @@ export default function Register() {
 
     const handleRegister = async () => {
 
+
         const payload = {
             email,
             name,
@@ -28,6 +29,7 @@ export default function Register() {
             console.log(error)
         }
     }
+
 
     return (
         <>
