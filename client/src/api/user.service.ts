@@ -12,6 +12,7 @@ export const userService = {
         if (!response.ok) {
             throw new Error('Помилка реєстрації');
 
+
         }
         return response.json()
     },
@@ -62,7 +63,8 @@ export const userService = {
             throw new Error(error.message || 'Помилка додавання в улюблені');
         }
         return response.json()
-
     }
+
+
 
 }

@@ -16,14 +16,12 @@ export default function SearchingPanel({ number }: Props) {
 
     const [currenthost, setcurrrentHost] = useState<IHost | null>()
 
-
     useEffect(() => {
         houseService.gethouseByid(Number(number))
             .then(data => setcurrrentHost(data))
             .catch(err => console.log(err))
-
-
     }, [number])
+
 
     return (
         <>
@@ -38,6 +36,7 @@ export default function SearchingPanel({ number }: Props) {
 
                     <input type="text" />
                 </label>
+
 
 
                 <label className={styles.panelData} >

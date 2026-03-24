@@ -3,13 +3,14 @@ import * as registerhouse from '../services/serivce.house'
 import { JWTPayload } from 'hono/utils/jwt/types'
 
 
-
+type Variables = {
+    jwtPayload: any;
+};
 
 export const registerHost = async (c: Context) => {
     try {
         const payload = c.get('jwtPayload') as any;
 
-        console.log("ДАНІ З ТОКЕНА (payload):", payload);
 
         const userId = payload?.id || payload?.userId || payload?.sub;
 

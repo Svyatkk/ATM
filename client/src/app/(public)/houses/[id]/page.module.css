@@ -1,0 +1,9 @@
+.pageHotel {
+    border: 1px solid black;
+    padding: 10px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}

@@ -11,6 +11,8 @@ export default async function HotelPage({ params }: Props) {
 
     return (
         <>
+
+
             <PageHotel children={hostData} />
         </>
     )
