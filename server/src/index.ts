@@ -11,6 +11,7 @@ import authrouter from './routes/auth.routes'
 import userouter from './routes/user.routes'
 import registerHouserRouter from './routes/house.route'
 import roomRouter from './routes/room.routes'
+import cityRoute from './routes/city.route'
 const app = new Hono()
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key_for_dev';
@@ -31,9 +32,12 @@ app.route('/api/users', userouter)
 
 app.route('/api/registerhost', registerHouserRouter)
 app.route('/api/houses', registerHouserRouter)
+app.route('/api/find', registerHouserRouter)
+
 
 
 app.route('/api/room', roomRouter)
+
 
 
 

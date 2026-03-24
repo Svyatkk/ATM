@@ -79,3 +79,26 @@ export const getHouses = async () => {
 }
 
 
+export const getSearchedHouses = async (cityName: string, capacity: number) => {
+
+    const houses = await prisma.house.findMany({
+        where: {
+            city: {
+                name: cityName
+            },
+            roomTypes: {
+                some: {
+                    capacity: capacity
+                }
+            }
+
+
+        },
+        include: {
+            city: true,
+            roomTypes: true
+        }
+    });
+
+    return houses;
+};

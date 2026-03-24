@@ -3,9 +3,7 @@ import * as registerhouse from '../services/serivce.house'
 import { JWTPayload } from 'hono/utils/jwt/types'
 
 
-type Variables = {
-    jwtPayload: any;
-};
+
 
 export const registerHost = async (c: Context) => {
     try {
@@ -57,6 +55,22 @@ export const gethousebyid = async (c: Context) => {
         console.log(error)
 
         return c.json({ message: 'Помилка при отриманні житла' }, 500)
+    }
+}
+
+
+export const getSearchedHouses = async (c: Context) => {
+    try {
+        const cityName = String(c.req.param('cityName'))
+        const capacity = Number(c.req.param('capacity'))
+
+        const houses = await registerhouse.getSearchedHouses(cityName, capacity)
+
+        return c.json(houses)
+
+    } catch (error) {
+        console.log(error)
+        return c.json({ message: 'Помилка при пошуку житла' }, 500)
     }
 }
 

@@ -5,3 +5,4 @@ export type IFormRoom = {
     pricePerNight: number;
     capacity: number;
 }
+
