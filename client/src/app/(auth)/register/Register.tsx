@@ -14,7 +14,6 @@ export default function Register() {
 
     const handleRegister = async () => {
 
-
         const payload = {
             email,
             name,

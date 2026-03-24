@@ -1,7 +1,7 @@
 'use client'
 import styles from './BlockHotel.module.css'
 import { IHost } from '@/types/host.interface'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { userService } from '@/api/user.service'
 type Props = {
@@ -28,8 +28,11 @@ export default function BlockHotel({ host }: Props) {
 
     return (
 
+
+
         <div className={styles.block} onClick={() => {
             route.push(`/houses/${host.id}`)
+
         }}>
             <div className={styles.image}>
             </div>

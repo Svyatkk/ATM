@@ -16,7 +16,6 @@ export default function NavBar() {
     const params = useParams()
     const houseId = params?.id as number | undefined;
 
-
     useEffect(() => {
         userService.getUser()
             .then(data => {
@@ -30,13 +29,16 @@ export default function NavBar() {
 
 
 
+
     return (
         <>
             <nav className={styles.nav}>
                 <h1>ATM</h1>
 
                 <div className={styles.useBlock}>
-                    <button>Зареєструвати власне помешкання</button>
+                    <button onClick={() => {
+                        router.push('/register-host')
+                    }}>Зареєструвати власне помешкання</button>
                     <Image className={styles.heart} onClick={() => {
                         router.push('/favourites')
                     }} height={32} width={32} alt='heart' src={'/img/heart.png'}></Image>

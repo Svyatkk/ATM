@@ -5,6 +5,8 @@ export type Iroom = {
     roomNumber: string, // 102 103 
     roomTypeId: number,
 
+
+
     roomType?: IRoomType
 
 }

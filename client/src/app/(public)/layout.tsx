@@ -26,7 +26,6 @@ export default function Layout({ children }: Props) {
                 <div className={styles.container}>
 
 
-
                     {children}
 
 

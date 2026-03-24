@@ -15,9 +15,6 @@ export const createRoom = async (data: any) => {
     return room
 }
 
-
-
-
 export const createHouse = async (data: any, userId: number) => {
 
     const { name, address, animals, type, city, roomTypes } = data
