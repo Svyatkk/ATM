@@ -81,22 +81,28 @@ export const getHouses = async () => {
 
 export const getSearchedHouses = async (cityName: string, capacity: number) => {
 
+    const validCapacity = isNaN(capacity) || capacity < 1 ? 1 : capacity;
+
     const houses = await prisma.house.findMany({
         where: {
             city: {
-                name: cityName
+                name: {
+                    equals: cityName,
+                    mode: 'insensitive'
+                }
             },
             roomTypes: {
                 some: {
-                    capacity: capacity
+                    capacity: {
+                        gte: validCapacity
+                    }
                 }
             }
-
-
         },
         include: {
             city: true,
-            roomTypes: true
+            roomTypes: true,
+            images: true
         }
     });
 

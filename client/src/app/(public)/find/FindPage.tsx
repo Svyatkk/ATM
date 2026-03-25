@@ -21,14 +21,25 @@ export default function FindPage({ city, capacity }: Props) {
 
 
     useEffect(() => {
-        const resp = houseService.getSearchedHouses(city, capacity)
-            .then(data => setHost(data))
-            .catch(err => console.log(err))
-
+        houseService.getSearchedHouses(city, capacity)
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setHost(data);
+                } else {
+                    console.log("Бекенд повернув не масив:", data);
+                    setHost([]);
+                }
+            })
+            .catch(err => {
+                console.log("Помилка запиту:", err);
+                setHost([]);
+            })
     }, [city, capacity])
+
 
     return (
         <>
+
 
             {hosts?.map((host) => (
                 <BlockHotel host={host} key={host.id} />

@@ -13,6 +13,7 @@ export default function NavBar() {
     const [user, setUser] = useState<IUser | null>()
     const router = useRouter()
 
+
     const params = useParams()
     const houseId = params?.id as number | undefined;
 

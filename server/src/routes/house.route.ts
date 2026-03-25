@@ -7,7 +7,7 @@ const registerHouserRouter = new Hono()
 registerHouserRouter.post('/registerHost', authMiddleware, registerHost)
 
 registerHouserRouter.get('/', gethosts)
-registerHouserRouter.get('/find/:cityName/:capacity', getSearchedHouses)
+registerHouserRouter.get('/find', getSearchedHouses)
 
 
 registerHouserRouter.get('/:id', gethousebyid)
