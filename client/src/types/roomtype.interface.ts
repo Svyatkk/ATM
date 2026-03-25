@@ -7,9 +7,10 @@ import { IImage } from "./image.interface"
 
 export type IRoomType = {
     id: number,
-    name: string, // стандарт люкс сімейний
+    name: string,
     pricePerNight: number,
     capacity: number,
+
 
     houseId: number,
     house?: IHost,

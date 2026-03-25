@@ -13,7 +13,7 @@ export default async function HotelPage({ params }: Props) {
         <>
 
 
-            <PageHotel children={hostData} />
+            <PageHotel host={hostData} />
         </>
     )
 }

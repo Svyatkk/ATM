@@ -19,6 +19,7 @@ export default function Favourites() {
             .catch(err => console.log(err))
     }, []);
 
+
     return (
         <>
             {hotels?.map((item, index) => {

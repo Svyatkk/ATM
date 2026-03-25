@@ -12,8 +12,12 @@ export type IHost = {
     animals: boolean,
     type: HostType,
     city: string,
-    roomType: IRoomType,
+    roomTypes: IRoomType[],
     favouriteBy: IUser[]
+
+
+
+
 }
 
 export const hostTypeOptions: HostType[] = [{ name: "Apartment", hrefimg: '/img/apartlogo.jpg' }, { name: "Home", hrefimg: '/img/homelogo.png' }, { name: "Hotel", hrefimg: '/img/hotellogo.png' }];
