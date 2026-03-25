@@ -18,6 +18,7 @@ export const registerHost = async (c: Context) => {
         }
 
 
+
         const body = await c.req.json();
 
         const house = await registerhouse.createHouse(body, Number(userId));
@@ -61,11 +62,12 @@ export const gethousebyid = async (c: Context) => {
 
 export const getSearchedHouses = async (c: Context) => {
     try {
-        const cityName = String(c.req.param('cityName'))
-        const capacity = Number(c.req.param('capacity'))
-
-        const houses = await registerhouse.getSearchedHouses(cityName, capacity)
-
+        const cityName = String(c.req.query('city'))
+        const capacity = Number(c.req.query('capacity'))
+        if (!cityName || !capacity) {
+            return c.json({ message: 'Місто та кількість гостей обовʼязкові' }, 400);
+        }
+        const houses = await registerhouse.getSearchedHouses(cityName, capacity);
         return c.json(houses)
 
     } catch (error) {

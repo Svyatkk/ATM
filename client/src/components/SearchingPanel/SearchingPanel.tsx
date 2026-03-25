@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { houseService } from '@/api/house.service';
 import { data } from 'react-router-dom';
-
+import { useRouter } from 'next/navigation';
 type Props = {
     number?: number | null
 }
@@ -16,12 +16,27 @@ export default function SearchingPanel({ number }: Props) {
 
     const [currenthost, setcurrrentHost] = useState<IHost | null>()
 
+    const [city, setCity] = useState<string>('')
+    const [capacity, setCapacity] = useState<number>(1)
+
+
+    const route = useRouter()
+
+    const handleSearch = () => {
+        if (!city) {
+            alert("Будь ласка, введіть місто");
+            return;
+        }
+
+
+        route.push(`/find?city=${city}&capacity=${capacity}`);
+    }
+
     useEffect(() => {
         houseService.gethouseByid(Number(number))
             .then(data => setcurrrentHost(data))
             .catch(err => console.log(err))
     }, [number])
-
 
     return (
         <>
@@ -34,9 +49,11 @@ export default function SearchingPanel({ number }: Props) {
                     </span>
                     {currenthost?.name}
 
-                    <input type="text" />
-                </label>
 
+                    <input onChange={(e) => {
+                        setCity(e.target.value)
+                    }} type="text" />
+                </label>
 
 
                 <label className={styles.panelData} >
@@ -44,7 +61,7 @@ export default function SearchingPanel({ number }: Props) {
                         <Image height={30} width={30} src={'/img/calendarLogo.png'} alt='Bed'>
                         </Image>
                     </span>
-                    <input type="month" />
+                    <input type="date" />
                 </label>
 
 
@@ -54,9 +71,11 @@ export default function SearchingPanel({ number }: Props) {
                         </Image>
                     </span>
 
-                    <input type="date" />
+                    <input onChange={(e) => {
+                        setCapacity(Number(e.target.value))
+                    }} type="number" />
                 </label>
-                <button className={styles.find}>Шукати</button>
+                <button onClick={handleSearch} className={styles.find}>Шукати</button>
             </div>
         </>
     )

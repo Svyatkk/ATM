@@ -24,15 +24,14 @@ export const houseService = {
     },
 
     async getSearchedHouses(cityName: string, capacity: number) {
-        const response = await fetch(`${BASE_URL}/houses/find/${cityName}/${capacity}`, {
+        const response = await fetch(`${BASE_URL}/houses/find?city=${cityName}&capacity=${capacity}`, {
             method: "GET",
             ...fetchOptions
         })
 
         return response.json()
-
-
     },
+
 
 
     async gethouseByid(id: number) {
