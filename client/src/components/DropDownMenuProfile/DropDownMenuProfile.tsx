@@ -23,6 +23,11 @@ export default function DropDownMenuProfile({ show }: Props) {
                     }}>
                         Обране
                         <Image className={styles.heartImg} height={20} width={20} alt='heart' src={'/img/heart.png'}></Image></div >
+
+                    <div className={styles.booking} onClick={() => {
+                        route.push('/orders')
+
+                    }}>Заброньоване</div>
                 </div>
 
             }

@@ -18,6 +18,7 @@ export default function NavBar() {
 
 
 
+
     const params = useParams()
     const houseId = params?.id as number | undefined;
 
@@ -54,6 +55,7 @@ export default function NavBar() {
                         <DropDownMenuProfile show={show}></DropDownMenuProfile>
                         <p>{user?.name}</p>
                     </div>
+
                 </div>
 
 

@@ -24,3 +24,14 @@ export const createBooking = async (c: Context<{ Variables: Variables }>) => {
     }
 }
 
+export const getOrder = async (c: Context<{ Variables: Variables }>) => {
+    try {
+        const payload = await c.get('jwtPayload') as any;
+        const booking = await serviceBooking.getOrder(payload.userId)
+
+        return c.json(booking)
+    } catch (error) {
+        console.log(error)
+        return c.json({ message: "Помилка при отриманні замовлення" }, 500)
+    }
+}

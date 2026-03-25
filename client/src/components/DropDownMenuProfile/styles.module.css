@@ -35,6 +35,7 @@
 
 }
 
+.booking:hover,
 .heart:hover {
     background-color: rgb(224, 224, 224);
     transition: 0.5s;
@@ -49,4 +50,8 @@
 
 
     transition: 0.5s;
+}
+
+.booking {
+    border: 1px solid black;
 }

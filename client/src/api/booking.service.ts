@@ -14,6 +14,16 @@ export const bookingService = {
 
         return (await response).json()
 
+    },
+
+    async getBooking() {
+        const response = await fetch(`${BASE_URL}/orders`, {
+            method: "GET",
+            ...fetchOptions,
+        })
+
+
+        return response.json()
 
     }
 

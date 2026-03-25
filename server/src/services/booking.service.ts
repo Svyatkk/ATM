@@ -10,7 +10,6 @@ export const bookTheRoom = async (userid: number, data: any) => {
     if (!availableRoom) {
         throw new Error("Немає створених кімнат цього типу");
     }
-
     const booking = await prisma.booking.create({
         data: {
             checkIn: new Date(checkIn),
@@ -25,3 +24,19 @@ export const bookTheRoom = async (userid: number, data: any) => {
 
     return booking
 }
+
+export const getOrder = async (userid: number) => {
+    const order = await prisma.booking.findFirst({
+        where: {
+            userId: userid
+        },
+        include: {
+            room: true
+        }
+
+    })
+
+    return order
+
+
+} 
