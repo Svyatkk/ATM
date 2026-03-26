@@ -16,6 +16,9 @@ export const userService = {
         }
         return response.json()
     },
+
+
+
     async userlogin(payload: any): Promise<IUser> {
         const response = await fetch(`${BASE_URL}/auth/login`, {
             method: "POST",
@@ -57,6 +60,19 @@ export const userService = {
             method: "POST",
             ...fetchOptions,
         })
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Помилка додавання в улюблені');
+        }
+        return response.json()
+    },
+    async deleteFav(id: number) {
+        const response = await fetch(`${BASE_URL}/users/profile/delete-fav/${id}`, {
+            method: "POST",
+            ...fetchOptions,
+        })
+
 
         if (!response.ok) {
             const error = await response.json();

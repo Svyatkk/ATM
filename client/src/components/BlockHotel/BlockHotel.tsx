@@ -4,7 +4,7 @@ import { IHost } from '@/types/host.interface'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { userService } from '@/api/user.service'
-
+import { useEffect } from 'react'
 type Props = {
     host: IHost
 }
@@ -13,14 +13,32 @@ export default function BlockHotel({ host }: Props) {
     const route = useRouter()
     const [fav, setFav] = useState(false)
 
-    const handleAdddFav = async () => {
+    const [favs, setFavs] = useState<boolean | false>()
+
+
+    useEffect(() => {
+
+        userService.showFav().then(res => setFavs(res)).catch(err => console.log(err))
+    }, [])
+
+
+
+
+    const handleFav = async () => {
         try {
-            await userService.addFav(host.id)
-            setFav(prev => !prev);
+            if (fav) {
+                await userService.deleteFav(host.id);
+            } else {
+                await userService.addFav(host.id);
+            }
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            setFav(prev => !prev);
         }
-    }
+    };
+
+
+
 
     return (
         <div className={styles.block} onClick={() => {
@@ -38,9 +56,10 @@ export default function BlockHotel({ host }: Props) {
                 <div
                     onClick={(e) => {
                         e.stopPropagation()
-                        handleAdddFav()
+                        setFav(prev => !prev)
+                        handleFav()
                     }}
-                    className={`${styles.fav} ${fav ? styles.active : ""}`}
+                    className={`${styles.fav} ${favs ? styles.active : ""}`}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

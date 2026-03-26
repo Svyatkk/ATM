@@ -16,6 +16,7 @@ export const houseService = {
             body: JSON.stringify(payload)
         });
 
+
         if (!response.ok) {
             const error = await response.json();
             throw new Error(error.message || 'Помилка реєстрації');

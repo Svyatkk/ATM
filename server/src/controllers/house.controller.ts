@@ -45,6 +45,10 @@ export const gethosts = async (c: Context) => {
 export const gethousebyid = async (c: Context) => {
     try {
         const id = Number(c.req.param('id'))
+        if (isNaN(id) || id === 0) {
+            return c.json({ message: 'Неправильний або відсутній ID' }, 400)
+        }
+
         const house = await registerhouse.getHouseByid(id)
 
         if (!house) {

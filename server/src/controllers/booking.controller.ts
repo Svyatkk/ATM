@@ -7,7 +7,6 @@ type Variables = {
 };
 
 
-
 export const createBooking = async (c: Context<{ Variables: Variables }>) => {
     try {
         const body = await c.req.json()
