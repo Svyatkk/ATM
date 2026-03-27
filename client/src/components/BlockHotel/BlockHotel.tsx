@@ -2,64 +2,63 @@
 import styles from './BlockHotel.module.css'
 import { IHost } from '@/types/host.interface'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { userService } from '@/api/user.service'
-import { useEffect } from 'react'
+
 type Props = {
-    host: IHost
+    host: IHost,
+    inSearch?: boolean
 }
 
-export default function BlockHotel({ host }: Props) {
+export default function BlockHotel({ host, inSearch }: Props) {
     const route = useRouter()
-    const [fav, setFav] = useState(false)
-
-    const [favs, setFavs] = useState<boolean | false>()
+    const [isFav, setIsFav] = useState(false)
+    const maxLenght = 120
 
 
     useEffect(() => {
+        userService.showFav()
+            .then((favorites: IHost[]) => {
+                const isFavorited = favorites.some(favHouse => favHouse.id === host.id);
+                setIsFav(isFavorited);
+            })
+            .catch(err => console.log(err))
+    }, [host.id])
 
-        userService.showFav().then(res => setFavs(res)).catch(err => console.log(err))
-    }, [])
+    const handleFavClick = async (e: React.MouseEvent) => {
+        e.stopPropagation()
 
+        const newFavState = !isFav;
+        setIsFav(newFavState);
 
-
-
-    const handleFav = async () => {
         try {
-            if (fav) {
-                await userService.deleteFav(host.id);
-            } else {
+            if (newFavState) {
                 await userService.addFav(host.id);
+            } else {
+                await userService.deleteFav(host.id);
             }
         } catch (error) {
-            console.log(error);
-            setFav(prev => !prev);
+            console.log("Помилка при оновленні:", error);
+            setIsFav(!newFavState);
         }
     };
 
 
-
-
     return (
-        <div className={styles.block} onClick={() => {
-            route.push(`/houses/${host.id}`)
-        }}>
-            <div className={styles.image}>
-            </div>
+        <div className={`${styles.block} ${inSearch ? styles.inSearch : ''}`} onClick={() => route.push(`/houses/${host.id}`)}>
+            <div className={styles.image}></div>
 
             <div className={styles.description}>
                 <div className={styles.text}>
-                    <p>{host.name}</p>
-                    <p>{host.address}</p>
+                    <p className={styles.name}>{host.name}</p>
+                    <p className={styles.address}>{host.address}</p>
+                    <p>{inSearch ? host.description ? host.description : <p className={styles.desc}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p> : ''}</p>
                 </div>
 
+
                 <div
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        setFav(prev => !prev)
-                        handleFav()
-                    }}
-                    className={`${styles.fav} ${favs ? styles.active : ""}`}
+                    onClick={handleFavClick}
+                    className={`${styles.fav} ${isFav ? styles.active : ""}`}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -67,6 +66,9 @@ export default function BlockHotel({ host }: Props) {
                         width="20"
                         height="20"
                         className={styles.heartIcon}
+                        fill={isFav ? "red" : "none"}
+                        stroke="currentColor"
+                        strokeWidth="2"
                     >
                         <path
                             strokeLinecap="round"
@@ -75,10 +77,6 @@ export default function BlockHotel({ host }: Props) {
                         />
                     </svg>
                 </div>
-
-
-
-
             </div>
         </div>
     )

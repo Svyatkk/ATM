@@ -14,6 +14,8 @@ export type IHost = {
     city: string,
     roomTypes: IRoomType[],
     favouriteBy: IUser[]
+    description: string
+
 
 
 

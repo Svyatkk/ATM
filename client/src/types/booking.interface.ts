@@ -12,7 +12,7 @@ export type IBooking = {
     createdAt: string,
     user: IUser,
 
-    rooms: Iroom[]
+    room: Iroom
 
 
 

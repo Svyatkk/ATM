@@ -5,14 +5,17 @@ import { IBooking } from "@/types/booking.interface";
 export const bookingService = {
 
     async createBooking(payload: IBooking): Promise<IBooking> {
-        const response = fetch(`${BASE_URL}/createBooking`, {
+        const response = await fetch(`${BASE_URL}/createBooking`, {
             method: "POST",
             ...fetchOptions,
             body: JSON.stringify(payload)
         })
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Помилка бронювання');
+        }
 
-
-        return (await response).json()
+        return response.json()
 
     },
 

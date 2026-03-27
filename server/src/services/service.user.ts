@@ -72,6 +72,7 @@ export const removeFavHouse = async (houseId: number, userid: number) => {
 }
 
 
+
 export const showFavourites = async (userid: number) => {
     const user = await prisma.user.findUnique({
         where: {

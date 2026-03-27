@@ -1,0 +1,199 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* HEADER */
+.header {
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.address {
+    display: flex;
+    align-items: center;
+    color: #666;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 10px;
+    background: #0070f3;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* DATE PICKER */
+.datePickerCard {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+}
+
+.datePickerTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.dateInputs {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dateInput {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    transition: 0.2s;
+}
+
+.dateInput:focus {
+    border-color: #0070f3;
+    outline: none;
+}
+
+/* ROOMS */
+.roomsSection {
+    margin-top: 20px;
+}
+
+.sectionTitle {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* GRID */
+.roomsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+.roomCard {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.roomCard:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGE */
+.roomImagePlaceholder {
+    height: 180px;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CONTENT */
+.roomContent {
+    padding: 15px;
+}
+
+.roomName {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* FEATURES */
+.roomFeatures {
+    margin-bottom: 15px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #555;
+    font-size: 14px;
+}
+
+.iconSmall {
+    width: 16px;
+    height: 16px;
+}
+
+/* FOOTER */
+.roomFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+}
+
+.priceNote {
+    font-size: 12px;
+    color: #777;
+}
+
+/* BUTTON */
+.bookButton {
+    background: #0070f3;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+.bookButton:hover {
+    background: #0059c1;
+}
+
+.bookButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* EMPTY */
+.noRooms {
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+}
