@@ -8,9 +8,9 @@ import { data } from "react-router-dom"
 import { IBooking } from "@/types/booking.interface"
 import styles from './style.module.css'
 export default function ShowOrder() {
-
-
     const [rooms, setRoom] = useState<IBooking[]>([])
+
+
 
     useEffect(() => {
         bookingService.getBooking()

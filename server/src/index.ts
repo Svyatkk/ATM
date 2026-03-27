@@ -36,6 +36,9 @@ app.route('/api/houses', registerHouserRouter)
 app.route('/api/find', registerHouserRouter)
 
 
+app.route('/api/', cityRoute)
+
+
 
 app.route('/api/room', roomRouter)
 

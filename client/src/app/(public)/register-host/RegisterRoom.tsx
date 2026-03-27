@@ -6,9 +6,6 @@ type Props = {
 }
 
 
-
-
-
 export default function RegisterRoom({ roomData, onChange }: Props) {
     return (
         <div style={{ border: '1px solid gray', padding: '10px', marginTop: '10px' }}>

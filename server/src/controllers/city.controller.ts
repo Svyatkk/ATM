@@ -8,7 +8,18 @@ type Variables = {
 };
 
 
-export const findCityCon = async (c: Context) => {
+export const getAllCities = async (c: Context) => {
 
+
+    try {
+        const cities = await cityService.getAllCities()
+
+
+        return c.json(cities)
+
+
+    } catch (error) {
+        console.log(error)
+    }
 
 }

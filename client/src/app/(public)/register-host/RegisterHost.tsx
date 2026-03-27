@@ -18,12 +18,7 @@ import { houseService } from '@/api/house.service'
 import RegisterRoom from './RegisterRoom'
 import { IFormRoom } from '@/types/IFormRoom.interface'
 
-
-
-
 export default function RegisterHost() {
-
-
 
     const [rooms, setRooms] = useState<IFormRoom[]>([])
 
@@ -39,7 +34,6 @@ export default function RegisterHost() {
         setRooms(updatedRooms)
 
     }
-
 
     const [type, setType] = useState<HostType['name'] | null>()
     const [name, setName] = useState<IHost['name'] | null>()
@@ -74,8 +68,6 @@ export default function RegisterHost() {
                 type,
                 country: country,
                 city: city,
-
-
                 roomTypes: formattedRoomTypes
 
             };
@@ -88,7 +80,6 @@ export default function RegisterHost() {
             console.log("Помилка:", error);
         }
     }
-
 
     return (
         <>
@@ -171,10 +162,6 @@ export default function RegisterHost() {
 
                     <SwiperSlide className={styles.slide3}>
 
-
-
-
-
                         <button onClick={registerhost} className={styles.register}>Register</button>
 
                         <button onClick={(e) => {
@@ -190,12 +177,7 @@ export default function RegisterHost() {
                                 capacity: 1
                             };
 
-
                             setRooms([...(rooms || []), newRoom])
-
-
-
-
 
                         }}>Додати ккімнату</button>
                         {rooms?.map((room) => {
@@ -207,13 +189,6 @@ export default function RegisterHost() {
                                 />
                             )
                         })}
-
-
-
-
-
-
-
 
                     </SwiperSlide>
 
