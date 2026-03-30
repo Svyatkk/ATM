@@ -10,6 +10,6 @@ export type ICity = {
     country: ICountry,
 
 
-    houses: IHost[]
+    Houses: IHost[]
     favoritedBy: IUser[]
 }

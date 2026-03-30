@@ -23,3 +23,15 @@ export const getAllCities = async (c: Context) => {
     }
 
 }
+
+export const getCityByName = async (c: Context) => {
+    try {
+        const name = String(c.req.param('name'))
+        const city = await cityService.getCityByName(name)
+        return c.json(city)
+    } catch (error) {
+
+        console.log(error)
+        return c.json({ message: 'Помилка при отриманні міста' }, 500)
+    }
+}

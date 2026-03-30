@@ -2,7 +2,7 @@ import { Context } from 'hono'
 import * as registerhouse from '../services/serivce.house'
 import { JWTPayload } from 'hono/utils/jwt/types'
 
-
+import { HouseType } from '@prisma/client'
 
 
 export const registerHost = async (c: Context) => {
@@ -16,8 +16,6 @@ export const registerHost = async (c: Context) => {
             console.log("Не вдалося знайти ID юзера в payload");
             return c.json({ message: 'Помилка авторизації: невірний формат токена' }, 401);
         }
-
-
 
         const body = await c.req.json();
 
@@ -63,6 +61,19 @@ export const gethousebyid = async (c: Context) => {
     }
 }
 
+export const getApartments = async (c: Context) => {
+    try {
+        const type = c.req.query('type')
+        const apartments = await registerhouse.getApartmentsByType(type as HouseType);
+
+        return c.json(apartments)
+    } catch (error) {
+        console.log(error)
+        return c.json({ message: 'Помилка при отриманні апартаментів' }, 500)
+    }
+}
+
+
 
 export const getSearchedHouses = async (c: Context) => {
     try {
@@ -79,4 +90,3 @@ export const getSearchedHouses = async (c: Context) => {
         return c.json({ message: 'Помилка при пошуку житла' }, 500)
     }
 }
-

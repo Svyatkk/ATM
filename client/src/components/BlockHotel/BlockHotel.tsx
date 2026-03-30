@@ -4,16 +4,20 @@ import { IHost } from '@/types/host.interface'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { userService } from '@/api/user.service'
+import { houseService } from '@/api/house.service'
 
 type Props = {
     host: IHost,
-    inSearch?: boolean
+    inSearch?: boolean,
+
 }
 
-export default function BlockHotel({ host, inSearch }: Props) {
+export default function BlockHotel({ host, inSearch, }: Props) {
     const route = useRouter()
     const [isFav, setIsFav] = useState(false)
     const maxLenght = 120
+
+
 
 
     useEffect(() => {

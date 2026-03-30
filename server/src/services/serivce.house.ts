@@ -1,5 +1,6 @@
 import { connect } from 'node:http2'
 import { prisma } from '../index'
+import { HouseType } from '@prisma/client'
 
 
 export const createRoom = async (data: any) => {
@@ -45,6 +46,7 @@ export const createHouse = async (data: any, userId: number) => {
                 }
             },
 
+
             roomTypes: {
                 create: roomTypes
             }
@@ -67,10 +69,22 @@ export const getHouseByid = async (id: number) => {
             }
         }
     })
-
     return house
 }
 
+
+export const getApartmentsByType = async (type: HouseType) => {
+    const apartmaents = await prisma.house.findMany({
+        where: {
+            type: type
+
+        }
+    })
+
+    return apartmaents
+
+
+}
 
 export const getHouses = async () => {
 

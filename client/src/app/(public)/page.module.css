@@ -2,12 +2,41 @@
 
     position: relative;
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
     align-items: center;
     justify-content: center;
     font-family: var(--font-geist-sans);
     background-color: white;
     gap: 15px;
+    padding: 30px;
+}
+
+.hosts {
+    border: 1px solid black;
+}
+
+.countries {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+}
+
+.country {
+    border: 1px solid black;
+    width: 300px;
+    padding: 10px;
+    height: 150px;
+    color: black;
+    font-size: 1.5em;
+
+    cursor: pointer;
+    border-radius: 15px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 }
 
 

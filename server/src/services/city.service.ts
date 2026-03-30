@@ -11,5 +11,16 @@ export const getAllCities = async () => {
 
 
 }
+export const getCityByName = async (name: string) => {
+    const city = await prisma.city.findUnique({
+        where: { name: name },
+        include: {
+            Houses: true
+        }
 
+    })
+
+    return city
+
+}
 

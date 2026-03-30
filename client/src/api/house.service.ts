@@ -48,6 +48,14 @@ export const houseService = {
             throw new Error(error.message || 'Помилка отримання');
         }
         return response.json();
+    },
+
+    async getApartmentsByType(type: string): Promise<IHost[]> {
+        const response = await fetch(`${BASE_URL}/houses/apartments?type=${type}`, {
+            method: "GET",
+            ...fetchOptions
+        })
+        return response.json()
     }
 
 
