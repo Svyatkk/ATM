@@ -32,12 +32,14 @@ export default function FindPage({ city, capacity }: Props) {
 
 
 
+
     useEffect(() => {
         houseService.getSearchedHouses(city, capacity)
             .then(data => setHost(data))
             .catch(err => console.log(err))
 
     }, [city, capacity])
+
 
 
     return (
@@ -52,9 +54,9 @@ export default function FindPage({ city, capacity }: Props) {
                     }} type="checkbox" /></label>
 
                 </div>
-
                 <div className={styles.hotels}>
-
+                    <h1>Результати пошуку</h1>
+                    <h3>{city}</h3>
                     {filteredHosts.length > 0 ? (
                         filteredHosts.map((host) => (
                             <BlockHotel inSearch={true} host={host} key={host.id} />

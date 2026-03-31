@@ -14,13 +14,11 @@ export default async function CityPage({ params }: Props) {
     const resolvedParams = await params;
     const urlName = resolvedParams.name;
 
-
-
     const cityData = await cityService.getCityByName(urlName);
 
     return (
         <div>
-            <h2 >{cityData.name}</h2>
+            <h2>{cityData.name}</h2>
 
 
 

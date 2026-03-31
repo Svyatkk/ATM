@@ -18,7 +18,7 @@ export default function Home() {
     const [blocksHotel, setBlockHotel] = useState<IHost[] | null>()
     const [cities, setCities] = useState<ICity[]>([])
     const [apartments, setApartments] = useState<IHost[]>([])
-
+    const [hotels, setHotels] = useState<IHost[]>([])
     const route = useRouter()
 
     const pathName = usePathname()
@@ -36,12 +36,17 @@ export default function Home() {
 
     useEffect(() => {
         houseService.getAllHouses()
-            .then(data => setBlockHotel(data))
+            .then(data => setHotels(data))
             .catch(err => console.log(err))
     }, [])
 
 
     const getApartments = (type: string) => {
+        houseService.getApartmentsByType(type)
+            .then(res => setApartments(res))
+            .catch(err => console.log(err))
+    }
+    const getHotels = (type: string) => {
         houseService.getApartmentsByType(type)
             .then(res => setApartments(res))
             .catch(err => console.log(err))
@@ -52,9 +57,9 @@ export default function Home() {
             <div className={styles.page}>
 
 
-                <div className={styles.countries}>
+                <div className={styles.cities}>
                     {cities.map((item) => {
-                        return <div onClick={() => route.push(`city/${item.name}`)} className={styles.country} key={item.id}>{item.name}</div>
+                        return <div onClick={() => route.push(`/find?city=${item.name}&capacity=${1}`)} className={styles.city} key={item.id}>{item.name}</div>
                     })}
                 </div>
 
@@ -64,6 +69,15 @@ export default function Home() {
                     <div className={styles.hosts}>
                         <h2>Апартаменти</h2>
                         {apartments?.map((item, index) => {
+                            return <BlockHotel host={item} key={index} ></BlockHotel>
+                        })}
+
+                    </div>
+
+
+                    <div className={styles.hosts}>
+                        <h2>Готелі</h2>
+                        {hotels?.map((item, index) => {
                             return <BlockHotel host={item} key={index} ></BlockHotel>
                         })}
 
