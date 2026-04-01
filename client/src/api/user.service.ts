@@ -17,6 +17,16 @@ export const userService = {
         return response.json()
     },
 
+    async getProfile() {
+        const response = await fetch(`${BASE_URL}/users/profile`, {
+            method: "GET",
+            ...fetchOptions
+        })
+        if (!response.ok) {
+            throw new Error('Користувач не авторизований');
+        }
+        return response.json()
+    },
 
 
 

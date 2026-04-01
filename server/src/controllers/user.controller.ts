@@ -20,6 +20,8 @@ export const getProfile = async (c: Context<{ Variables: Variables }>) => {
 };
 
 
+
+
 export const addFavHouseCon = async (c: Context) => {
     try {
         const payload = c.get('jwtPayload') as { userId: number };

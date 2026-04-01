@@ -3,6 +3,7 @@ import { Context } from 'hono'
 import * as registerhouse from '../services/serivce.house'
 import { JWTPayload } from 'hono/utils/jwt/types'
 import * as cityService from '../services/city.service';
+import { prisma } from '..';
 type Variables = {
     jwtPayload: any;
 };
@@ -22,6 +23,18 @@ export const getAllCities = async (c: Context) => {
         console.log(error)
     }
 
+}
+
+
+export const getMostPopularCities = async (c: Context) => {
+    try {
+        const cities = await cityService.getMostPopularCities()
+        return c.json(cities)
+
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const getCityByName = async (c: Context) => {

@@ -20,8 +20,6 @@ export default async function CityPage({ params }: Props) {
         <div>
             <h2>{cityData.name}</h2>
 
-
-
             {cityData.Houses?.map((item) => {
                 return <div key={item.id}><BlockHotel host={item}></BlockHotel></div>
             })}

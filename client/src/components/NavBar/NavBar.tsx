@@ -14,18 +14,18 @@ export default function NavBar() {
 
     const [user, setUser] = useState<IUser | null>()
     const [show, setShow] = useState<boolean>(false)
+    const [blockMenu, setBlockMenu] = useState<boolean>(false)
+
     const router = useRouter()
-
-
-
-
     const params = useParams()
     const houseId = params?.id as number | undefined;
+
 
     useEffect(() => {
         userService.getUser()
             .then(data => {
                 setUser(data.user || data);
+                setBlockMenu(true)
             })
             .catch(err => {
                 console.log('Помилка авторизації:', err);
@@ -49,12 +49,29 @@ export default function NavBar() {
 
                     <span className={styles.userAvatar}></span>
 
+
                     <div onClick={() => {
-                        setShow(prev => !prev)
+                        blockMenu && setShow(prev => !prev)
                     }} className={styles.text}>
+
                         <DropDownMenuProfile show={show}></DropDownMenuProfile>
-                        <p>{user?.name}</p>
+                        <p>{user ?
+                            user?.name
+                            :
+
+                            <div className={styles.buttons}>
+                                <button onClick={() => router.push('/login')}>Увійти</button>
+                                <button onClick={() => router.push('/register')}>Зареєструватися</button>
+
+                            </div>
+
+
+
+
+                        }</p>
                     </div>
+
+
 
                 </div>
 

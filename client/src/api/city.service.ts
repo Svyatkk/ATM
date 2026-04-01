@@ -34,6 +34,20 @@ export const cityService = {
         }
         const data: ICity = await response.json();
         return data;
-    }
+    },
 
+    async getmostPopularCities(): Promise<ICity[]> {
+        const reponse = await fetch(`${BASE_URL}/city/popular`, {
+            method: "GET",
+            ...fetchOptions
+        }
+        )
+        if (!reponse.ok) {
+            throw new Error("Помилка під час завантаження популярних міст");
+        }
+        const data: ICity[] = await reponse.json();
+        return data;
+
+
+    }
 }

@@ -12,6 +12,7 @@ import { usePathname } from 'next/navigation'
 import { ICity } from '@/types/city.interface'
 import { cityService } from '@/api/city.service'
 import { useRouter } from 'next/navigation'
+import { userService } from '@/api/user.service'
 
 
 export default function Home() {
@@ -19,6 +20,10 @@ export default function Home() {
     const [cities, setCities] = useState<ICity[]>([])
     const [apartments, setApartments] = useState<IHost[]>([])
     const [hotels, setHotels] = useState<IHost[]>([])
+    const [popularCities, setPopularCities] = useState<ICity[]>([])
+
+
+
     const route = useRouter()
 
     const pathName = usePathname()
@@ -33,6 +38,12 @@ export default function Home() {
     }, [])
 
 
+
+    useEffect(() => {
+        cityService.getmostPopularCities()
+            .then(res => setPopularCities(res))
+            .catch(err => console.log(err))
+    }, [])
 
     useEffect(() => {
         houseService.getAllHouses()
@@ -64,6 +75,12 @@ export default function Home() {
                 </div>
 
 
+                <div className={styles.popularCities}>
+                    <h2>Популярні міста</h2>
+                    {popularCities?.map((item) => {
+                        return <div onClick={() => route.push(`/find?city=${item.name}&capacity=${1}`)} className={styles.city} key={item.id}>{item.name}</div>
+                    })}
+                </div>
                 <div className={styles.Hotels}>
 
                     <div className={styles.hosts}>
