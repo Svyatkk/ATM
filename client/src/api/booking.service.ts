@@ -25,11 +25,18 @@ export const bookingService = {
             ...fetchOptions,
         })
 
+        return response.json()
+    },
+    async removeOrder(bookingId: number) {
+        const response = await fetch(`${BASE_URL}/remove/${bookingId}`, {
+            method: "DELETE",
+            ...fetchOptions,
+        })
 
         return response.json()
 
-    }
 
+    }
 
 
 }

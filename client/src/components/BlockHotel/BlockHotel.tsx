@@ -18,8 +18,6 @@ export default function BlockHotel({ host, inSearch, }: Props) {
     const maxLenght = 120
 
 
-
-
     useEffect(() => {
         userService.showFav()
             .then((favorites: IHost[]) => {

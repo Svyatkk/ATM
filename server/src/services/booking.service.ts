@@ -8,6 +8,7 @@ export const bookTheRoom = async (userid: number, data: any) => {
 
     const checkOutDate = new Date(checkOut)
 
+
     const availableRoom = await prisma.room.findFirst({
         where: {
             roomTypeId: roomTypeId,
@@ -16,7 +17,7 @@ export const bookTheRoom = async (userid: number, data: any) => {
                 none: {
                     status: { not: 'CANCELLED' },
                     checkIn: { lt: checkOutDate },
-                    checkOut: { lt: checkInDate }
+                    checkOut: { gt: checkInDate }
                 }
             }
         },
@@ -24,8 +25,9 @@ export const bookTheRoom = async (userid: number, data: any) => {
     });
 
     if (!availableRoom) {
-        throw new Error("Немає створених кімнат цього типу");
+        throw new Error("На жаль, на ці дати немає вільних номерів цього типу.");
     }
+
 
 
 
@@ -65,4 +67,17 @@ export const getOrder = async (userid: number) => {
     return orders
 
 
-} 
+}
+
+
+
+export const removeBooking = async (userid: number, bookingId: number) => {
+
+    await prisma.booking.deleteMany({
+        where: {
+            id: bookingId,
+            userId: userid,
+        }
+    })
+
+}

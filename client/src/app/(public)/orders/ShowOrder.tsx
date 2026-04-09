@@ -18,6 +18,18 @@ export default function ShowOrder() {
             .catch(err => console.log(err))
     }, [])
 
+    const handleRemoveOrder = async (bookingId: number) => {
+        try {
+            bookingService.removeOrder(bookingId)
+
+
+            setRoom(prevRooms => prevRooms.filter(room => room.id !== bookingId));
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    }
 
     return (
         <div className={styles.container}>
@@ -63,6 +75,14 @@ export default function ShowOrder() {
                                         <span className={styles.label}>Готель:</span>
 
                                         <span className={styles.value}>{room.room.roomType?.House?.name}</span>
+                                    </div>
+
+                                    <div className={styles.infoRow}>
+                                        <span className={styles.label}>Скасувати:</span>
+
+                                        <span onClick={() => {
+                                            handleRemoveOrder(room.id)
+                                        }} className={styles.value}>Скасувати замовлення</span>
                                     </div>
                                 </div>
 

@@ -19,6 +19,7 @@ export default function PageHotel({ host }: Props) {
             return;
         }
 
+
         const startDate = new Date(checkIn);
         const endDate = new Date(checkOut);
 
@@ -26,6 +27,7 @@ export default function PageHotel({ host }: Props) {
             alert("Дата виїзду повинна бути пізніше дати заїзду!");
             return;
         }
+
 
         const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -58,7 +60,6 @@ export default function PageHotel({ host }: Props) {
 
     return (
         <div className={styles.container}>
-            {/* Секція інформації про готель */}
             <div className={styles.header}>
                 <h1 className={styles.title}>{host.name}</h1>
                 <p className={styles.address}>

@@ -6,7 +6,7 @@ export type Iroom = {
     roomTypeId: number,
 
 
-
+    
     roomType?: IRoomType
 
 }

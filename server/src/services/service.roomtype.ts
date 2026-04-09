@@ -5,6 +5,8 @@ import { prisma } from '../index'
 
 
 
+
+
 export const createRoomType = async (data: any) => {
 
     const { name, pricePerNight, capacity, HouseId } = data

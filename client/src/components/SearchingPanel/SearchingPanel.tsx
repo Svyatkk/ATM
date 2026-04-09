@@ -3,11 +3,12 @@
 import { IHost } from '@/types/host.interface';
 import styles from './SearchingPanel.module.css'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { houseService } from '@/api/house.service';
 import { data } from 'react-router-dom';
 import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { ICity } from '@/types/city.interface';
 type Props = {
     number?: number | null
 }
@@ -16,27 +17,32 @@ export default function SearchingPanel({ number }: Props) {
 
     const [currenthost, setcurrrentHost] = useState<IHost | null>()
 
-    const [city, setCity] = useState<string>('')
+    const [city, setCity] = useState<ICity | string>()
     const [capacity, setCapacity] = useState<number>(1)
 
+    const [exceptCity, setExceptCity] = useState<string>()
+    const path = usePathname()
 
     const route = useRouter()
-
     const handleSearch = () => {
+
         if (!city) {
-            alert("Будь ласка, введіть місто");
-            return;
+            setExceptCity(currenthost?.city?.name)
+
         }
-
-
-        route.push(`/find?city=${city}&capacity=${capacity}`);
+        const searchCity = city || exceptCity;
+        route.push(`/find?city=${searchCity}&capacity=${capacity}`);
     }
 
+
     useEffect(() => {
-        houseService.gethouseByid(Number(number))
-            .then(data => setcurrrentHost(data))
-            .catch(err => console.log(err))
+        if (number) {
+            houseService.gethouseByid(Number(number))
+                .then(data => setcurrrentHost(data))
+                .catch(err => console.log(err))
+        }
     }, [number])
+
 
     return (
         <>
@@ -47,22 +53,28 @@ export default function SearchingPanel({ number }: Props) {
                         <Image height={30} width={30} src={'/img/bedLogo.png'} alt='Bed'>
                         </Image>
                     </span>
-                    {currenthost?.name}
+
+                    {path === '/' || path.includes('?') ? '' : currenthost?.name}
+
+                    < input onChange={(e) => {
 
 
-                    <input onChange={(e) => {
                         setCity(e.target.value)
                     }} type="text" />
                 </label>
 
-
-                <label className={styles.panelData} >
+                <label className={styles.panelCountPeople} >
                     <span>
                         <Image height={30} width={30} src={'/img/calendarLogo.png'} alt='Bed'>
                         </Image>
                     </span>
-                    <input type="date" />
+
+                    <input onChange={(e) => {
+                        setCapacity(Number(e.target.value))
+                    }} type="date" />
                 </label>
+
+
 
 
                 <label className={styles.panelCountPeople} >
@@ -75,6 +87,8 @@ export default function SearchingPanel({ number }: Props) {
                         setCapacity(Number(e.target.value))
                     }} type="number" />
                 </label>
+
+
                 <button onClick={handleSearch} className={styles.find}>Шукати</button>
             </div>
         </>

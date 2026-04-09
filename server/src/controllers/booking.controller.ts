@@ -18,8 +18,31 @@ export const createBooking = async (c: Context<{ Variables: Variables }>) => {
         return c.json(booking)
 
 
+    } catch (error: any) {
+        console.error("Помилка бронювання:", error.message);
+
+        return c.json({
+            message: error.message || "Помилка при бронюванні"
+        }, 400);
+    }
+}
+
+export const removeOrder = async (c: Context<{ Variables: Variables }>) => {
+    try {
+        const payload = await c.get('jwtPayload') as any;
+
+        const bookingId = Number(c.req.param('bookingId'))
+
+        await serviceBooking.removeBooking(payload.userid, bookingId)
+
+
+
+        return c.json({ message: "Успішно видалено" })
+
+
     } catch (error) {
         console.log(error)
+        return c.json({ message: "Помилка при виаленні замовлення" }, 500)
     }
 }
 

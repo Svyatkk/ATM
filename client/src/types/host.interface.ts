@@ -1,8 +1,10 @@
 import { IUser } from "./user.interface"
 import { IRoomType } from "./roomtype.interface";
+import { ICity } from "./city.interface";
 export type HostType = { name: "Apartment", hrefimg: '/img/apartlogo.jpg' }
     | { name: "Home", hrefimg: '/img/homelogo.png' } |
 { name: "Hotel", hrefimg: '/img/hotellogo.png' };
+
 
 
 export type IHost = {
@@ -11,7 +13,7 @@ export type IHost = {
     address: string,
     animals: boolean,
     type: HostType,
-    city: string,
+    city: ICity,
     roomTypes: IRoomType[],
     favouriteBy: IUser[]
     description: string

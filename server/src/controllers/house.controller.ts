@@ -90,3 +90,4 @@ export const getSearchedHouses = async (c: Context) => {
         return c.json({ message: 'Помилка при пошуку житла' }, 500)
     }
 }
+

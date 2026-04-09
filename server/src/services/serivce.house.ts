@@ -62,6 +62,7 @@ export const getHouseByid = async (id: number) => {
             id: id
         },
         include: {
+            city: true,
             roomTypes: {
                 include: {
                     rooms: true

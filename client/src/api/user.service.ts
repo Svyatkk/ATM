@@ -11,11 +11,10 @@ export const userService = {
         })
         if (!response.ok) {
             throw new Error('Помилка реєстрації');
-
-
         }
         return response.json()
     },
+
 
     async getProfile() {
         const response = await fetch(`${BASE_URL}/users/profile`, {
@@ -27,8 +26,6 @@ export const userService = {
         }
         return response.json()
     },
-
-
 
     async userlogin(payload: any): Promise<IUser> {
         const response = await fetch(`${BASE_URL}/auth/login`, {
@@ -53,7 +50,6 @@ export const userService = {
         return response.json()
     },
 
-
     async showFav() {
         const response = await fetch(`${BASE_URL}/users/favourites`, {
             method: "GET",
@@ -65,7 +61,6 @@ export const userService = {
         }
         return response.json()
     },
-
 
     async addFav(id: number) {
         const response = await fetch(`${BASE_URL}/users/profile/${id}`, {
