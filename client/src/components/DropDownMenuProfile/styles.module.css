@@ -5,25 +5,25 @@
     border-radius: 15px;
     background-color: white;
     position: absolute;
-    bottom: -110%;
     left: 0;
+    top: 130%;
     display: flex;
     padding: 10px;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    transition: 1s;
+    transition: 0.5s;
     z-index: -100;
     color: black;
     opacity: 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
-.heart {
+
+
+.button {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -31,24 +31,20 @@
     border-radius: 15px;
     padding: 5px;
     transition: 0.5s;
-
-
+    width: 100%;
 }
 
-.booking:hover,
-.heart:hover {
+
+
+.button:hover {
     background-color: rgb(224, 224, 224);
     transition: 0.5s;
 }
 
-
-
 .show {
     opacity: 1;
-    bottom: -250%;
+    top: 100%;
     z-index: 1000;
-
-
     transition: 0.5s;
 }
 

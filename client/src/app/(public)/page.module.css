@@ -9,7 +9,7 @@
     font-family: var(--font-geist-sans);
     background-color: white;
     gap: 15px;
-    padding: 40px 30px 0px 30px;
+    padding: 40px 0 0 0;
 
 }
 
@@ -20,6 +20,7 @@
     position: relative;
     padding-top: 40px;
     gap: 10px;
+    border: 1px solid black;
 
 }
 
@@ -80,7 +81,6 @@
     background-color: #ffffff;
     width: 100%;
     min-height: 100vh;
-
 }
 
 .Hotels {
@@ -98,6 +98,7 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+    border: 1px solid black;
 }
 
 .hotels {

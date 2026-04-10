@@ -69,9 +69,11 @@ export default function PageHotel({ host }: Props) {
                 {host.type && <span className={styles.badge}>{host.type.name}</span>}
             </div>
 
+
             <div className={styles.datePickerCard}>
                 <h3 className={styles.datePickerTitle}>Оберіть дати проживання</h3>
                 <div className={styles.dateInputs}>
+
                     <div className={styles.inputGroup}>
                         <label>Дата заїзду</label>
                         <input
@@ -92,6 +94,9 @@ export default function PageHotel({ host }: Props) {
                             className={styles.dateInput}
                         />
                     </div>
+
+                    <button className={styles.saveChange}>Застосувати зміни</button>
+
                 </div>
             </div>
 
@@ -119,7 +124,7 @@ export default function PageHotel({ host }: Props) {
                                     <div className={styles.roomFooter}>
                                         <div className={styles.priceContainer}>
                                             <span className={styles.price}>{room.pricePerNight} ₴</span>
-                                            <span className={styles.priceNote}>/ ніч</span>
+                                            <span className={styles.priceNote}>за ніч</span>
                                         </div>
 
                                         <button

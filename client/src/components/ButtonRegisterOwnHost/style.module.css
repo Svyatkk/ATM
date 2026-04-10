@@ -1,0 +1,11 @@
+.button {
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: 0.3s
+}

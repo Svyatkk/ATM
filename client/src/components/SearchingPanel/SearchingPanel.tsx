@@ -9,12 +9,16 @@ import { data } from 'react-router-dom';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import { ICity } from '@/types/city.interface';
+import DateDropDown from '../DateDropDown/DateDropDown';
 type Props = {
     number?: number | null
 }
 
 export default function SearchingPanel({ number }: Props) {
+    const [checkIn, setCheckIn] = useState<string>()
+    const [checkOut, setCheckOut] = useState<string>()
 
+    const [click, setClick] = useState<boolean>(false)
     const [currenthost, setcurrrentHost] = useState<IHost | null>()
 
     const [city, setCity] = useState<ICity | string>()
@@ -69,9 +73,28 @@ export default function SearchingPanel({ number }: Props) {
                         </Image>
                     </span>
 
-                    <input onChange={(e) => {
-                        setCapacity(Number(e.target.value))
-                    }} type="date" />
+                    <div onClick={() => {
+                        setClick(prev => !prev)
+                    }} className={styles.date}>
+                        <div className={styles.dateText}>
+                            {
+                                checkIn || checkOut ?
+                                    (
+                                        <div>{checkIn} - {checkOut}</div>
+                                    )
+                                    :
+                                    (
+                                        <div>Оберіть дати </div>
+                                    )
+                            }
+
+                        </div>
+                        <DateDropDown checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} show={click}></DateDropDown>
+                    </div>
+
+
+
+
                 </label>
 
 

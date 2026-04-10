@@ -3,32 +3,33 @@ import { useState } from "react"
 import styles from './styles.module.css'
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
+
 type Props = {
-    show: boolean
-
-
+    show: boolean | null
 }
 
 export default function DropDownMenuProfile({ show }: Props) {
+
+
 
     const route = useRouter()
     return (
         <>
             {
 
+
                 <div className={`${styles.block} ${show ? styles.show : ''}`}>
-                    <div>somethig</div>
-                    <div className={styles.heart} onClick={() => {
-                        route.push('/favourites')
-                    }}>
+
+                    <Link className={styles.button} href={'/'}>Мій акаунт</Link>
+
+                    <Link href={'/favourites'} className={styles.button}>
                         Обране
-                        <Image className={styles.heartImg} height={20} width={20} alt='heart' src={'/img/heart.png'}></Image></div >
+                    </Link >
 
-                    <div className={styles.booking} onClick={() => {
-                        route.push('/orders')
-
-                    }}>Заброньоване</div>
-                </div>
+                    <Link href={'/orders'} className={styles.button}
+                    >Заброньоване</Link>
+                </div >
 
             }
 

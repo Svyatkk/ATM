@@ -63,6 +63,7 @@ export default function Home() {
             .catch(err => console.log(err))
     }
 
+
     return (
         <>
             <div className={styles.page}>
@@ -74,13 +75,22 @@ export default function Home() {
                     })}
                 </div>
 
+                {
+                    popularCities ?
+                        (
+                            <div className={styles.popularCities}>
+                                <h2>Популярні міста</h2>
+                                {popularCities?.map((item) => {
+                                    return <div onClick={() => route.push(`/find?city=${item.name}&capacity=${1}`)} className={styles.city} key={item.id}>{item.name}</div>
+                                })}
+                            </div>
+                        )
+                        :
+                        (
+                            <div></div>
+                        )
+                }
 
-                <div className={styles.popularCities}>
-                    <h2>Популярні міста</h2>
-                    {popularCities?.map((item) => {
-                        return <div onClick={() => route.push(`/find?city=${item.name}&capacity=${1}`)} className={styles.city} key={item.id}>{item.name}</div>
-                    })}
-                </div>
                 <div className={styles.Hotels}>
 
                     <div className={styles.hosts}>

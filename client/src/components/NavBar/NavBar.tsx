@@ -8,7 +8,8 @@ import { useRouter } from 'next/navigation'
 import SearchingPanel from '../SearchingPanel/SearchingPanel'
 import { useParams } from 'next/navigation'
 import DropDownMenuProfile from '../DropDownMenuProfile/DropDownMenuProfile'
-
+import RegisterHostButton from '../ButtonRegisterOwnHost/ButtonRegisterOwnHost'
+import Register from '@/app/(auth)/register/Register'
 export default function NavBar() {
 
 
@@ -42,10 +43,11 @@ export default function NavBar() {
                 }} className={styles.h1}>ATM</h1>
 
 
+
                 <div className={styles.useBlock}>
-                    <button onClick={() => {
-                        router.push('/register-host')
-                    }}>Зареєструвати власне помешкання</button>
+
+
+                    <RegisterHostButton></RegisterHostButton>
 
                     <span className={styles.userAvatar}></span>
 
@@ -65,14 +67,8 @@ export default function NavBar() {
 
                             </div>
 
-
-
-
                         }</p>
                     </div>
-
-
-
                 </div>
 
 

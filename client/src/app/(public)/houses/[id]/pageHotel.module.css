@@ -5,7 +5,6 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* HEADER */
 .header {
     margin-bottom: 30px;
 }
@@ -14,6 +13,9 @@
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 10px;
+    color: black;
+
+
 }
 
 .address {
@@ -39,7 +41,6 @@
     font-size: 12px;
 }
 
-/* DATE PICKER */
 .datePickerCard {
     background: #fff;
     padding: 20px;
@@ -52,18 +53,29 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 15px;
+    color: black;
+
+}
+
+.saveChange {
+    background-color: #0059c1;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
 }
 
 .dateInputs {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    border: 1px solid black;
 }
 
 .inputGroup {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    color: black;
 }
 
 .dateInput {
@@ -78,7 +90,6 @@
     outline: none;
 }
 
-/* ROOMS */
 .roomsSection {
     margin-top: 20px;
 }
@@ -87,16 +98,15 @@
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 20px;
+    color: black;
 }
 
-/* GRID */
 .roomsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
 }
 
-/* CARD */
 .roomCard {
     background: white;
     border-radius: 18px;
@@ -109,7 +119,6 @@
     transform: translateY(-5px);
 }
 
-/* IMAGE */
 .roomImagePlaceholder {
     height: 180px;
     background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
@@ -118,7 +127,6 @@
     justify-content: center;
 }
 
-/* CONTENT */
 .roomContent {
     padding: 15px;
 }
@@ -129,7 +137,6 @@
     margin-bottom: 10px;
 }
 
-/* FEATURES */
 .roomFeatures {
     margin-bottom: 15px;
 }
@@ -147,7 +154,6 @@
     height: 16px;
 }
 
-/* FOOTER */
 .roomFooter {
     display: flex;
     justify-content: space-between;
@@ -170,7 +176,6 @@
     color: #777;
 }
 
-/* BUTTON */
 .bookButton {
     background: #0070f3;
     color: white;
@@ -191,7 +196,6 @@
     cursor: not-allowed;
 }
 
-/* EMPTY */
 .noRooms {
     text-align: center;
     color: #888;
