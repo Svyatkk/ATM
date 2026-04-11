@@ -18,23 +18,16 @@ export default function FindPage({ city, capacity }: Props) {
     const [allowsPets, setAllowsPets] = useState<boolean>(false)
 
 
-
-    const filteredHosts = hosts.filter((host) => {
-
-
-        //   const typeMath = selectedTypes.length === 0 || selectedTypes.includes(host.type.name)
-
+    const filteredHosts = Array.isArray(hosts) ? hosts.filter((host) => {
         const petsMatch = !allowsPets || host.animals === true;
-
-        return petsMatch
-    })
-
+        return petsMatch;
+    }) : [];
 
 
 
 
     useEffect(() => {
-        houseService.getSearchedHouses(city, capacity)
+        houseService.getSearchedHouses(city, capacity, undefined, undefined)
             .then(data => setHost(data))
             .catch(err => console.log(err))
 
@@ -58,7 +51,7 @@ export default function FindPage({ city, capacity }: Props) {
                     <h1>Результати пошуку</h1>
                     <h3>{city}</h3>
                     {filteredHosts.length > 0 ? (
-                        filteredHosts.map((host) => (
+                        filteredHosts?.map((host) => (
                             <BlockHotel inSearch={true} host={host} key={host.id} />
                         ))
                     ) : (

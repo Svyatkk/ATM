@@ -94,9 +94,14 @@ export const getHouses = async () => {
 }
 
 
-export const getSearchedHouses = async (cityName: string, capacity: number) => {
+export const getSearchedHouses = async (cityName: string, capacity: number, checkIn: string, checkOut: string) => {
 
     const validCapacity = isNaN(capacity) || capacity < 1 ? 1 : capacity;
+
+    const hasDates = Boolean(checkIn && checkOut);
+    const checkInDate = hasDates ? new Date(checkIn as string) : undefined;
+    const checkOutDate = hasDates ? new Date(checkOut as string) : undefined;
+
 
     const houses = await prisma.house.findMany({
         where: {
@@ -110,10 +115,23 @@ export const getSearchedHouses = async (cityName: string, capacity: number) => {
                 some: {
                     capacity: {
                         gte: validCapacity
+                    },
+                    rooms: {
+                        some: {
+                            bookings: hasDates ? {
+                                none: {
+                                    status: { not: 'CANCELLED' },
+                                    checkIn: { lt: checkOutDate },
+                                    checkOut: { gt: checkInDate }
+                                }
+                            } : undefined
+                        }
                     }
                 }
-            }
+            },
+
         },
+
         include: {
             city: true,
             roomTypes: true,

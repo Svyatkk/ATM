@@ -5,7 +5,62 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+
 }
+
+
+.hamMenu {
+    height: 40px;
+    width: 50px;
+    position: relative;
+    cursor: pointer;
+    display: none;
+    z-index: 101;
+
+    transition: 1 ease;
+
+}
+
+
+.hamMenu span {
+    height: 4px;
+    width: 70%;
+    background-color: white;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+
+}
+
+.hamMenu span:nth-child(1) {
+    top: 25%;
+
+
+}
+
+.hamMenu span:nth-child(3) {
+    top: 75%;
+
+}
+
+.hamMenu.active span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.hamMenu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamMenu.active span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
 
 
 .useBlock {
@@ -16,6 +71,7 @@
     align-items: center;
     gap: 15px;
     padding: 5px;
+    border: 1px solid white;
 }
 
 .userAvatar {
@@ -75,6 +131,8 @@
     width: 100%;
     bottom: -130%;
     z-index: 100;
+
+
 }
 
 .buttons {
@@ -91,4 +149,15 @@
     border-radius: 5px;
     box-sizing: border-box;
     transition: 0.3s;
+}
+
+
+@media (max-width: 1200px) {
+    .nav {
+        border: 1px solid yellow;
+    }
+
+    .hamMenu {
+        display: block;
+    }
 }

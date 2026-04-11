@@ -27,18 +27,26 @@ export default function SearchingPanel({ number }: Props) {
     const [exceptCity, setExceptCity] = useState<string>()
     const path = usePathname()
 
+
+
+
+
     const route = useRouter()
     const handleSearch = () => {
-
         if (!city) {
-            setExceptCity(currenthost?.city?.name)
-
+            setExceptCity(currenthost?.city?.name);
         }
         const searchCity = city || exceptCity;
-        route.push(`/find?city=${searchCity}&capacity=${capacity}`);
+
+        let searchPath = `/find?city=${searchCity}&capacity=${capacity}`;
+
+
+        if (checkIn && checkOut) {
+            searchPath += `&checkIn=${checkIn}&checkOut=${checkOut}`;
+        }
+
+        route.push(searchPath);
     }
-
-
     useEffect(() => {
         if (number) {
             houseService.gethouseByid(Number(number))

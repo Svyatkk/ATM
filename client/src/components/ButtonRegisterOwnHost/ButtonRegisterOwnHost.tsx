@@ -9,6 +9,9 @@ export default function RegisterHostButton() {
     const router = useRouter()
 
 
+
+
+
     return (
         <>
             <button className={styles.button} onClick={() => {

@@ -16,7 +16,6 @@ export const houseService = {
             body: JSON.stringify(payload)
         });
 
-
         if (!response.ok) {
             const error = await response.json();
             throw new Error(error.message || 'Помилка реєстрації');
@@ -24,13 +23,19 @@ export const houseService = {
         return response.json();
     },
 
-    async getSearchedHouses(cityName: string, capacity: number) {
-        const response = await fetch(`${BASE_URL}/houses/find?city=${cityName}&capacity=${capacity}`, {
+    async getSearchedHouses(cityName: string, capacity: number, checkIn?: string, checkOut?: string,) {
+        let url = `${BASE_URL}/houses/find?city=${cityName}&capacity=${capacity}`;
+
+        if (checkIn && checkOut) {
+            url += `&checkIn=${checkIn}&checkOut=${checkOut}`;
+        }
+
+        const response = await fetch(url, {
             method: "GET",
             ...fetchOptions
-        })
+        });
 
-        return response.json()
+        return response.json();
     },
 
 
@@ -42,7 +47,7 @@ export const houseService = {
             ...fetchOptions
         })
 
-
+        
         if (!response.ok) {
             const error = await response.json();
             throw new Error(error.message || 'Помилка отримання');

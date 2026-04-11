@@ -10,7 +10,18 @@ import { useParams } from 'next/navigation'
 import DropDownMenuProfile from '../DropDownMenuProfile/DropDownMenuProfile'
 import RegisterHostButton from '../ButtonRegisterOwnHost/ButtonRegisterOwnHost'
 import Register from '@/app/(auth)/register/Register'
+import SideBar from '../SideBar/SideBar'
+import { BlobOptions } from 'buffer'
+
+
+
 export default function NavBar() {
+
+
+    const [showSidebar, setShowSidebar] = useState<boolean>()
+
+
+    const [hamClikc, setHamClicked] = useState<boolean>()
 
 
     const [user, setUser] = useState<IUser | null>()
@@ -57,7 +68,7 @@ export default function NavBar() {
                     }} className={styles.text}>
 
                         <DropDownMenuProfile show={show}></DropDownMenuProfile>
-                        <p>{user ?
+                        {user ?
                             user?.name
                             :
 
@@ -67,14 +78,39 @@ export default function NavBar() {
 
                             </div>
 
-                        }</p>
+                        }
+
+
+
+
                     </div>
+
+                    <div
+
+                        onClick={() => {
+                            setHamClicked(prev => !prev)
+                            setShowSidebar(prev => !prev)
+
+
+                        }}
+                        className={`${styles.hamMenu} ${hamClikc ? styles.active : ''}`}
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+
                 </div>
 
 
                 <div className={styles.search}>
                     <SearchingPanel number={houseId}></SearchingPanel>
                 </div>
+
+
+
+                <SideBar show={showSidebar}></SideBar>
             </nav >
         </>
     )

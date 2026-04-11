@@ -79,10 +79,16 @@ export const getSearchedHouses = async (c: Context) => {
     try {
         const cityName = String(c.req.query('city'))
         const capacity = Number(c.req.query('capacity'))
+
+        const checkIn = String(c.req.query('checkIn'));
+        const checkOut = String(c.req.query('checkOut'));
+
+
         if (!cityName || !capacity) {
             return c.json({ message: 'Місто та кількість гостей обовʼязкові' }, 400);
         }
-        const houses = await registerhouse.getSearchedHouses(cityName, capacity);
+
+        const houses = await registerhouse.getSearchedHouses(cityName, capacity, checkIn, checkOut);
         return c.json(houses)
 
     } catch (error) {

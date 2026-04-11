@@ -45,6 +45,7 @@ export default function Home() {
             .catch(err => console.log(err))
     }, [])
 
+
     useEffect(() => {
         houseService.getAllHouses()
             .then(data => setHotels(data))

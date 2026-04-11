@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { IUser } from '@/types/user.interface'
 import { useRouter } from 'next/navigation'
 import { userService } from '@/api/user.service'
+
 export default function Register() {
 
     const router = useRouter()
@@ -61,7 +62,7 @@ export default function Register() {
 
                 <div className={styles.backLogin}>
                     <p>Вже зареєстровані ?</p>
-                    <button className={styles.registerButton}>Увійти</button>
+                    <button onClick={() => router.push('/login')} className={styles.registerButton}>Увійти</button>
                 </div>
             </div>
         </>

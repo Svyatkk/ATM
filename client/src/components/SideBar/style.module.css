@@ -1,0 +1,16 @@
+.block {
+    height: calc(200vh);
+    width: 300px;
+    background-color: black;
+    position: fixed;
+    right: -100%;
+    z-index: 100;
+    transition: 0.5s;
+
+}
+
+.block.show {
+    right: -3%;
+    transition: 0.5s;
+
+}
