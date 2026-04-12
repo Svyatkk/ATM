@@ -101,8 +101,15 @@
     border: 1px solid black;
 }
 
+
 .hotels {
     border: 1px solid red;
 
 
+}
+
+@media (max-width: 1200px) {
+    .container>h1 {
+        display: none;
+    }
 }

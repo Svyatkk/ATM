@@ -1,6 +1,6 @@
 .block {
 
-
+    z-index: 10000;
     border: 1px solid black;
     border-radius: 15px;
     background-color: white;

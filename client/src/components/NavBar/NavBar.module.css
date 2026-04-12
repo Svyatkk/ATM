@@ -160,4 +160,8 @@
     .hamMenu {
         display: block;
     }
+
+    .temp {
+        display: none;
+    }
 }

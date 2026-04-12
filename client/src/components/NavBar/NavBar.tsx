@@ -53,11 +53,7 @@ export default function NavBar() {
                     router.push('/')
                 }} className={styles.h1}>ATM</h1>
 
-
-
                 <div className={styles.useBlock}>
-
-
                     <RegisterHostButton></RegisterHostButton>
 
                     <span className={styles.userAvatar}></span>
@@ -66,23 +62,19 @@ export default function NavBar() {
                     <div onClick={() => {
                         blockMenu && setShow(prev => !prev)
                     }} className={styles.text}>
+                        <div className={styles.temp}>
+                            <DropDownMenuProfile show={show}></DropDownMenuProfile>
+                        </div>
 
-                        <DropDownMenuProfile show={show}></DropDownMenuProfile>
                         {user ?
                             user?.name
                             :
-
                             <div className={styles.buttons}>
                                 <button onClick={() => router.push('/login')}>Увійти</button>
                                 <button onClick={() => router.push('/register')}>Зареєструватися</button>
 
                             </div>
-
                         }
-
-
-
-
                     </div>
 
                     <div

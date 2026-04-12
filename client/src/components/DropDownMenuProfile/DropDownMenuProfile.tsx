@@ -4,31 +4,27 @@ import styles from './styles.module.css'
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-
+import PanelButtons from "../PanelButtons/PanelButtons"
 type Props = {
     show: boolean | null
+
+
 }
 
 export default function DropDownMenuProfile({ show }: Props) {
 
-
-
     const route = useRouter()
+
     return (
         <>
             {
+                <div
+                    className={`${styles.block} ${show ? styles.show : ''}`}
+                >
 
 
-                <div className={`${styles.block} ${show ? styles.show : ''}`}>
+                    <PanelButtons></PanelButtons>
 
-                    <Link className={styles.button} href={'/'}>Мій акаунт</Link>
-
-                    <Link href={'/favourites'} className={styles.button}>
-                        Обране
-                    </Link >
-
-                    <Link href={'/orders'} className={styles.button}
-                    >Заброньоване</Link>
                 </div >
 
             }
