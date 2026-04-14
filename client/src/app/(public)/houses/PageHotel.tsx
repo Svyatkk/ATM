@@ -1,9 +1,9 @@
 'use client'
 import styles from '../houses/[id]/pageHotel.module.css'
 import { IHost } from "@/types/host.interface"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { bookingService } from '@/api/booking.service'
-
+import { useRouter } from 'next/navigation'
 type Props = {
     host: IHost
 }
@@ -12,6 +12,74 @@ export default function PageHotel({ host }: Props) {
     const [checkIn, setCheckIn] = useState<string>('')
     const [checkOut, setCheckOut] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [availableRoomTypes, setAvailableRoomTypes] = useState(host.roomTypes ?? [])
+    const router = useRouter();
+
+
+
+
+    useEffect(() => {
+        if (checkIn && checkOut && datesAreValid(checkIn, checkOut)) {
+            setAvailableRoomTypes(getAvailableRoomTypes(host.roomTypes ?? [], checkIn, checkOut));
+        } else {
+            setAvailableRoomTypes(host.roomTypes ?? []);
+        }
+    }, [host.roomTypes]);
+
+    const parseDate = (dateString: string) => new Date(dateString)
+
+    const datesAreValid = (checkInDate: string, checkOutDate: string) => {
+        if (!checkInDate || !checkOutDate) return false
+        return parseDate(checkInDate) < parseDate(checkOutDate)
+    }
+
+    const hasDateOverlap = (start: Date, end: Date, bookedStart: Date, bookedEnd: Date) => {
+        return start < bookedEnd && end > bookedStart
+    }
+
+    const isRoomAvailable = (roomType: any, checkInDate: string, checkOutDate: string) => {
+        const start = parseDate(checkInDate);
+        const end = parseDate(checkOutDate);
+
+        if (!roomType.rooms || roomType.rooms.length === 0) return false;
+
+        return roomType.rooms.some((room: any) => {
+            if (!room.bookings || room.bookings.length === 0) return true;
+
+            const hasOverlap = room.bookings.some((booking: any) => {
+                if (booking.status === 'CANCELLED') return false;
+
+                const bookedStart = parseDate(booking.checkIn);
+                const bookedEnd = parseDate(booking.checkOut);
+                return hasDateOverlap(start, end, bookedStart, bookedEnd);
+            });
+            console.log("Дані кімнат з бекенда:", host.roomTypes);
+            return !hasOverlap;
+        });
+    }
+
+    const getAvailableRoomTypes = (roomTypes: any[], checkInDate: string, checkOutDate: string) => {
+        return roomTypes.filter((roomType) => isRoomAvailable(roomType, checkInDate, checkOutDate))
+    }
+
+    const handleApplyDates = () => {
+        if (!checkIn || !checkOut) {
+            alert("Будь ласка, оберіть дати заїзду та виїзду перед перевіркою доступності!")
+            return
+        }
+
+        if (!datesAreValid(checkIn, checkOut)) {
+            alert("Дата виїзду повинна бути пізніше дати заїзду!")
+            return
+        }
+
+        const filteredRooms = getAvailableRoomTypes(host.roomTypes ?? [], checkIn, checkOut)
+        setAvailableRoomTypes(filteredRooms)
+
+        if (filteredRooms.length === 0) {
+            alert("На ці дати немає доступних кімнат.")
+        }
+    }
 
     const handleBook = async (roomType: any) => {
         if (!checkIn || !checkOut) {
@@ -19,15 +87,13 @@ export default function PageHotel({ host }: Props) {
             return;
         }
 
-
-        const startDate = new Date(checkIn);
-        const endDate = new Date(checkOut);
-
-        if (startDate >= endDate) {
+        if (!datesAreValid(checkIn, checkOut)) {
             alert("Дата виїзду повинна бути пізніше дати заїзду!");
             return;
         }
 
+        const startDate = parseDate(checkIn);
+        const endDate = parseDate(checkOut);
 
         const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -45,9 +111,14 @@ export default function PageHotel({ host }: Props) {
         try {
             setIsLoading(true);
             await bookingService.createBooking(payload as any);
-            alert("Кімнату успішно забронювано!");
+            alert("Кімнату успішно заброньовано!");
+
             setCheckIn('');
             setCheckOut('');
+
+
+            router.refresh();
+
         } catch (err: any) {
             console.error(err);
             alert(err.message || "Сталася помилка при бронюванні. Можливо, на ці дати немає вільних кімнат.");
@@ -69,11 +140,9 @@ export default function PageHotel({ host }: Props) {
                 {host.type && <span className={styles.badge}>{host.type.name}</span>}
             </div>
 
-
             <div className={styles.datePickerCard}>
                 <h3 className={styles.datePickerTitle}>Оберіть дати проживання</h3>
                 <div className={styles.dateInputs}>
-
                     <div className={styles.inputGroup}>
                         <label>Дата заїзду</label>
                         <input
@@ -95,17 +164,16 @@ export default function PageHotel({ host }: Props) {
                         />
                     </div>
 
-                    <button className={styles.saveChange}>Застосувати зміни</button>
-
+                    <button className={styles.saveChange} onClick={handleApplyDates}>Застосувати зміни</button>
                 </div>
             </div>
 
             <div className={styles.roomsSection}>
                 <h2 className={styles.sectionTitle}>Доступні варіанти розміщення</h2>
 
-                {host.roomTypes && host.roomTypes.length > 0 ? (
+                {availableRoomTypes && availableRoomTypes.length > 0 ? (
                     <div className={styles.roomsGrid}>
-                        {host.roomTypes.map((room, index) => (
+                        {availableRoomTypes.map((room, index) => (
                             <div className={styles.roomCard} key={index}>
                                 <div className={styles.roomImagePlaceholder}>
                                     <svg fill="none" stroke="#ccc" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -140,7 +208,7 @@ export default function PageHotel({ host }: Props) {
                         ))}
                     </div>
                 ) : (
-                    <p className={styles.noRooms}>На жаль, інформації про кімнати поки немає.</p>
+                    <p className={styles.noRooms}>На жаль, на обрані дати немає доступних кімнат.</p>
                 )}
             </div>
         </div>

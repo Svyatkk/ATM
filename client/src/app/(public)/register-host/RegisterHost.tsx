@@ -20,6 +20,7 @@ import { IFormRoom } from '@/types/IFormRoom.interface'
 
 export default function RegisterHost() {
 
+
     const [rooms, setRooms] = useState<IFormRoom[]>([])
 
     const updateRoomData = (roomId: string, fieldName: string, newValue: any) => {
@@ -46,6 +47,7 @@ export default function RegisterHost() {
 
     const registerhost = async () => {
         try {
+
 
             const formattedRoomTypes = rooms.map((room) => {
                 return {

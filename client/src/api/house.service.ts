@@ -44,10 +44,11 @@ export const houseService = {
 
         const response = await fetch(`${BASE_URL}/houses/${id}`, {
             method: "GET",
-            ...fetchOptions
+            ...fetchOptions,
+            cache: 'no-store'
         })
 
-        
+
         if (!response.ok) {
             const error = await response.json();
             throw new Error(error.message || 'Помилка отримання');

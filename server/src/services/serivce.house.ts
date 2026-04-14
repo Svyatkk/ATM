@@ -65,7 +65,11 @@ export const getHouseByid = async (id: number) => {
             city: true,
             roomTypes: {
                 include: {
-                    rooms: true
+                    rooms: {
+                        include: {
+                            bookings: true
+                        }
+                    }
                 }
             }
         }
@@ -133,8 +137,24 @@ export const getSearchedHouses = async (cityName: string, capacity: number, chec
         },
         include: {
             city: true,
-            roomTypes: true,
-            images: true
+            roomTypes: {
+                where: {
+                    capacity: {
+                        gte: validCapacity
+                    },
+                    rooms: {
+                        some: {
+                            bookings: hasDates ? {
+                                none: {
+                                    status: { not: 'CANCELLED' },
+                                    checkIn: { lt: checkOutDate! },
+                                    checkOut: { gt: checkInDate! }
+                                }
+                            } : undefined
+                        }
+                    }
+                }
+            }, images: true
         }
     });
 

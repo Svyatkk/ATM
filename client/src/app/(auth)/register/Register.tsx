@@ -9,6 +9,7 @@ export default function Register() {
 
     const router = useRouter()
 
+    
     const [name, setName] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [email, setEmail] = useState<string>("")

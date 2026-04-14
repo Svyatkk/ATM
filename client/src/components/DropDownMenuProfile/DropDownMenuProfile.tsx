@@ -4,16 +4,20 @@ import styles from './styles.module.css'
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import PanelButtons from "../PanelButtons/PanelButtons"
+import PanelButtons from "../PanelsButtons/PanelButtons"
 type Props = {
     show: boolean | null
-
-
 }
+
+
+
+
 
 export default function DropDownMenuProfile({ show }: Props) {
 
     const route = useRouter()
+
+
 
     return (
         <>

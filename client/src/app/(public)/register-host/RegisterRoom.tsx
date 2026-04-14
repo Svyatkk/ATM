@@ -11,6 +11,7 @@ export default function RegisterRoom({ roomData, onChange }: Props) {
         <div style={{ border: '1px solid gray', padding: '10px', marginTop: '10px' }}>
             <p>Налаштування кімнати (ID: {roomData.id})</p>
 
+
             <div style={{ marginBottom: '10px' }}>
                 <label>Номер кімнати: </label>
                 <input

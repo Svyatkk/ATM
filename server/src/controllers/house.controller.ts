@@ -80,8 +80,8 @@ export const getSearchedHouses = async (c: Context) => {
         const cityName = String(c.req.query('city'))
         const capacity = Number(c.req.query('capacity'))
 
-        const checkIn = String(c.req.query('checkIn'));
-        const checkOut = String(c.req.query('checkOut'));
+        const checkIn = c.req.query('checkIn');
+        const checkOut = c.req.query('checkOut');
 
 
         if (!cityName || !capacity) {

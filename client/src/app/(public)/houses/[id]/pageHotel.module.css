@@ -5,6 +5,11 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
+.container button {
+    outline: none;
+}
+
+
 .header {
     margin-bottom: 30px;
 }
@@ -62,11 +67,16 @@
     border-radius: 15px;
     padding: 10px 20px 10px 20px;
     cursor: pointer;
+    height: 90%;
+
 }
 
 .dateInputs {
     display: flex;
     gap: 20px;
+    align-items: center;
+
+
     flex-wrap: wrap;
     border: 1px solid black;
 }

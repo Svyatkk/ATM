@@ -28,9 +28,6 @@ export default function SearchingPanel({ number }: Props) {
     const path = usePathname()
 
 
-
-
-
     const route = useRouter()
     const handleSearch = () => {
         if (!city) {
