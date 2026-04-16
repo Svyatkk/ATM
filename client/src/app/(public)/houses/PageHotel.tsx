@@ -15,9 +15,6 @@ export default function PageHotel({ host }: Props) {
     const [availableRoomTypes, setAvailableRoomTypes] = useState(host.roomTypes ?? [])
     const router = useRouter();
 
-
-
-
     useEffect(() => {
         if (checkIn && checkOut && datesAreValid(checkIn, checkOut)) {
             setAvailableRoomTypes(getAvailableRoomTypes(host.roomTypes ?? [], checkIn, checkOut));

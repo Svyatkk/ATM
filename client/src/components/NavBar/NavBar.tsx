@@ -12,15 +12,13 @@ import RegisterHostButton from '../ButtonRegisterOwnHost/ButtonRegisterOwnHost'
 import Register from '@/app/(auth)/register/Register'
 import SideBar from '../SideBar/SideBar'
 import { BlobOptions } from 'buffer'
+import { PAGES_URL } from '@/api/config'
 
 
 
 export default function NavBar() {
 
-
     const [showSidebar, setShowSidebar] = useState<boolean>()
-
-
     const [hamClikc, setHamClicked] = useState<boolean>()
 
 
@@ -31,7 +29,6 @@ export default function NavBar() {
     const router = useRouter()
     const params = useParams()
     const houseId = params?.id as number | undefined;
-
 
     useEffect(() => {
         userService.getUser()
@@ -46,11 +43,12 @@ export default function NavBar() {
     }, [])
 
 
+
     return (
         <>
             <nav className={styles.nav}>
                 <h1 onClick={() => {
-                    router.push('/')
+                    router.push(PAGES_URL.MAIN)
                 }} className={styles.h1}>ATM</h1>
 
                 <div className={styles.useBlock}>
@@ -70,8 +68,8 @@ export default function NavBar() {
                             user?.name
                             :
                             <div className={styles.buttons}>
-                                <button onClick={() => router.push('/login')}>Увійти</button>
-                                <button onClick={() => router.push('/register')}>Зареєструватися</button>
+                                <button onClick={() => router.push(PAGES_URL.LOGIN)}>Увійти</button>
+                                <button onClick={() => router.push(PAGES_URL.REGISTER)}>Зареєструватися</button>
 
                             </div>
                         }

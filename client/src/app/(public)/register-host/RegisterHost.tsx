@@ -169,8 +169,6 @@ export default function RegisterHost() {
                         <button onClick={(e) => {
 
                             e.preventDefault()
-
-
                             const newRoom: IFormRoom = {
                                 id: Date.now().toString(),
                                 roomNumber: '',
@@ -196,6 +194,8 @@ export default function RegisterHost() {
 
                     <SwiperSlide className={styles.slide3}>
                             //Пізніше щось додамо
+
+
 
                     </SwiperSlide>
                 </Swiper>

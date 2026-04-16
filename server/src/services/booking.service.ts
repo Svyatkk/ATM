@@ -28,9 +28,6 @@ export const bookTheRoom = async (userid: number, data: any) => {
         throw new Error("На жаль, на ці дати немає вільних номерів цього типу.");
     }
 
-
-
-
     const booking = await prisma.booking.create({
         data: {
             checkIn: checkInDate,
