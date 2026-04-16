@@ -13,12 +13,7 @@ type Props = {
 }
 
 
-
-
 export default function DateDropDown({ show, checkIn, checkOut, setCheckIn, setCheckOut }: Props) {
-
-
-
     return (
         <>
 
@@ -32,8 +27,6 @@ export default function DateDropDown({ show, checkIn, checkOut, setCheckIn, setC
                 </label>
                 <label htmlFor="">
                     <p>Дата виїзду</p>
-
-
 
                     <input value={checkOut} onChange={(e) => {
                         setCheckOut(e.target.value)

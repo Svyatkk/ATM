@@ -13,12 +13,7 @@ export default function SideBar({ show }: Props) {
 
     return (
         <>
-
-
             <div className={`${styles.block} ${show ? styles.show : ''}`}>
-
-
-
                 <RegisterHostButton></RegisterHostButton>
             </div>
         </>

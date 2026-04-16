@@ -4,6 +4,7 @@ import { BASE_URL, fetchOptions } from "./config";
 import { IBooking } from "@/types/booking.interface";
 export const bookingService = {
 
+
     async createBooking(payload: IBooking): Promise<IBooking> {
         const response = await fetch(`${BASE_URL}/createBooking`, {
             method: "POST",

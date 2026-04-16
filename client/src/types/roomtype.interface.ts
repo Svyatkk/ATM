@@ -14,10 +14,7 @@ export type IRoomType = {
 
     houseId: number,
     House?: IHost,
-
     images: IImage[],
-
-
     rooms: Iroom[]
 
 

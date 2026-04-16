@@ -1,5 +1,6 @@
 'use client'
 
+import { PAGES_URL } from '@/api/config'
 import styles from './style.module.css'
 
 import Link from 'next/link'
@@ -10,11 +11,11 @@ export default function PanelButtons() {
             <div className={styles.buttons}>
                 <Link className={styles.button} href={'/'}>Мій акаунт</Link>
 
-                <Link href={'/favourites'} className={styles.button}>
+                <Link href={PAGES_URL.FAVOURITES} className={styles.button}>
                     Обране
                 </Link >
 
-                <Link href={'/orders'} className={styles.button}
+                <Link href={PAGES_URL.ORDERS} className={styles.button}
                 >Заброньоване</Link>
             </div>
         </>

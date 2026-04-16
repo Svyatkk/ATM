@@ -10,13 +10,12 @@ import styles from './style.module.css'
 export default function ShowOrder() {
     const [rooms, setRoom] = useState<IBooking[]>([])
 
-
-
     useEffect(() => {
         bookingService.getBooking()
             .then(data => setRoom(data))
             .catch(err => console.log(err))
     }, [])
+
 
     const handleRemoveOrder = async (bookingId: number) => {
         try {
@@ -27,8 +26,6 @@ export default function ShowOrder() {
         } catch (error) {
             console.log(error)
         }
-
-
     }
 
     return (

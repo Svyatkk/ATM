@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { IUser } from '@/types/user.interface'
 import { useRouter } from 'next/navigation'
 import { userService } from '@/api/user.service'
-
+import { PAGES_URL } from '@/api/config'
 export default function Register() {
 
     const router = useRouter()
 
-    
+
     const [name, setName] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [email, setEmail] = useState<string>("")
@@ -24,7 +24,7 @@ export default function Register() {
 
         try {
             await userService.userRegister(payload)
-            router.push('/')
+            router.push(PAGES_URL.MAIN)
             router.refresh()
         } catch (error) {
             console.log(error)
@@ -63,7 +63,7 @@ export default function Register() {
 
                 <div className={styles.backLogin}>
                     <p>Вже зареєстровані ?</p>
-                    <button onClick={() => router.push('/login')} className={styles.registerButton}>Увійти</button>
+                    <button onClick={() => router.push(PAGES_URL.LOGIN)} className={styles.registerButton}>Увійти</button>
                 </div>
             </div>
         </>

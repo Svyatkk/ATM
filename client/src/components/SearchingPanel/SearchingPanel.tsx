@@ -97,13 +97,7 @@ export default function SearchingPanel({ number }: Props) {
                         <DateDropDown checkIn={checkIn} checkOut={checkOut} setCheckIn={setCheckIn} setCheckOut={setCheckOut} show={click}></DateDropDown>
                     </div>
 
-
-
-
                 </label>
-
-
-
 
                 <label className={styles.panelCountPeople} >
                     <span>

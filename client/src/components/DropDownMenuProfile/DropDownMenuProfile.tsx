@@ -10,14 +10,9 @@ type Props = {
 }
 
 
-
-
-
 export default function DropDownMenuProfile({ show }: Props) {
 
     const route = useRouter()
-
-
 
     return (
         <>
@@ -25,7 +20,6 @@ export default function DropDownMenuProfile({ show }: Props) {
                 <div
                     className={`${styles.block} ${show ? styles.show : ''}`}
                 >
-
 
                     <PanelButtons></PanelButtons>
 

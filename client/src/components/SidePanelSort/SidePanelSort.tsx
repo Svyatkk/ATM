@@ -8,8 +8,6 @@ export default function SidePanelSort() {
         <>
             <div className={styles.sideBlock}>
                 <label htmlFor="">Можна собакам ?<input onChange={(e) => {
-
-
                 }} type="checkbox" /></label>
 
             </div>
