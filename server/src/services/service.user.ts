@@ -20,8 +20,6 @@ export const getUserById = async (userId: number) => {
 
 
 export const deleteFavHouse = async (houseId: number, userid: number) => {
-
-
     const user = await prisma.user.update({
         where: {
             id: userid
@@ -29,16 +27,12 @@ export const deleteFavHouse = async (houseId: number, userid: number) => {
         data: {
             favoriteHouses: {
                 disconnect: { id: houseId }
-
-
             }
         }
     })
-
     return user
 }
 export const addFavHouse = async (houseId: number, userid: number) => {
-
 
     const user = await prisma.user.update({
         where: {
@@ -84,9 +78,5 @@ export const showFavourites = async (userid: number) => {
     })
 
     return user?.favoriteHouses || []
-
-
-
-
 }
 

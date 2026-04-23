@@ -4,9 +4,12 @@ import styles from './page.module.css'
 import Home from "./Home"
 import SearchingPanel from '@/components/SearchingPanel/SearchingPanel'
 
+
+
 type Props = {
     children: React.ReactNode
 }
+
 
 
 export default function Layout({ children }: Props) {

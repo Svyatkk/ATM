@@ -16,10 +16,12 @@ import { PAGES_URL } from '@/api/config'
 
 
 
+
 export default function NavBar() {
 
     const [showSidebar, setShowSidebar] = useState<boolean>()
     const [hamClikc, setHamClicked] = useState<boolean>()
+
 
 
     const [user, setUser] = useState<IUser | null>()
@@ -29,6 +31,7 @@ export default function NavBar() {
     const router = useRouter()
     const params = useParams()
     const houseId = params?.id as number | undefined;
+
 
     useEffect(() => {
         userService.getUser()
@@ -44,6 +47,7 @@ export default function NavBar() {
 
 
 
+
     return (
         <>
             <nav className={styles.nav}>
@@ -52,9 +56,14 @@ export default function NavBar() {
                 }} className={styles.h1}>ATM</h1>
 
                 <div className={styles.useBlock}>
-                    <RegisterHostButton></RegisterHostButton>
+
+                    <div className={styles.but}>
+
+                        <RegisterHostButton></RegisterHostButton>
+                    </div>
 
                     <span className={styles.userAvatar}></span>
+
 
 
                     <div onClick={() => {
@@ -70,7 +79,6 @@ export default function NavBar() {
                             <div className={styles.buttons}>
                                 <button onClick={() => router.push(PAGES_URL.LOGIN)}>Увійти</button>
                                 <button onClick={() => router.push(PAGES_URL.REGISTER)}>Зареєструватися</button>
-
                             </div>
                         }
                     </div>
@@ -80,7 +88,6 @@ export default function NavBar() {
                         onClick={() => {
                             setHamClicked(prev => !prev)
                             setShowSidebar(prev => !prev)
-
 
                         }}
                         className={`${styles.hamMenu} ${hamClikc ? styles.active : ''}`}
@@ -93,12 +100,9 @@ export default function NavBar() {
 
                 </div>
 
-
                 <div className={styles.search}>
                     <SearchingPanel number={houseId}></SearchingPanel>
                 </div>
-
-
 
                 <SideBar show={showSidebar}></SideBar>
             </nav >

@@ -4,6 +4,7 @@
 import styles from './style.module.css'
 import { useRouter } from 'next/navigation'
 import { PAGES_URL } from '@/api/config'
+import { useEffect } from 'react'
 export default function RegisterHostButton() {
 
     const router = useRouter()

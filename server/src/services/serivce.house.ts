@@ -78,6 +78,7 @@ export const getHouseByid = async (id: number) => {
 }
 
 
+
 export const getApartmentsByType = async (type: HouseType) => {
     const apartmaents = await prisma.house.findMany({
         where: {

@@ -24,3 +24,5 @@ export const authMiddleware = async (c: Context<{ Variables: Variables }>, next:
         return c.json({ message: 'Неавторизовано: недійсний токен' }, 401);
     }
 };
+
+

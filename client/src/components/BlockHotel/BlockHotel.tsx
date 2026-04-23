@@ -12,11 +12,11 @@ type Props = {
 
 }
 
+
 export default function BlockHotel({ host, inSearch, }: Props) {
     const route = useRouter()
     const [isFav, setIsFav] = useState(false)
     const maxLenght = 120
-
 
     useEffect(() => {
         userService.showFav()
@@ -43,7 +43,7 @@ export default function BlockHotel({ host, inSearch, }: Props) {
             console.log("Помилка при оновленні:", error);
             setIsFav(!newFavState);
         }
-    };
+    }
 
 
     return (

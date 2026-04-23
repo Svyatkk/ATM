@@ -9,7 +9,7 @@ export default function PanelButtons() {
     return (
         <>
             <div className={styles.buttons}>
-                <Link className={styles.button} href={'/'}>Мій акаунт</Link>
+                <Link className={styles.button} href={PAGES_URL.PROFILE}>Мій акаунт</Link>
 
                 <Link href={PAGES_URL.FAVOURITES} className={styles.button}>
                     Обране
@@ -17,6 +17,7 @@ export default function PanelButtons() {
 
                 <Link href={PAGES_URL.ORDERS} className={styles.button}
                 >Заброньоване</Link>
+
             </div>
         </>
     )

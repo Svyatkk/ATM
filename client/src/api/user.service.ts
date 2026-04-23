@@ -50,6 +50,7 @@ export const userService = {
         return response.json()
     },
 
+
     async showFav() {
         const response = await fetch(`${BASE_URL}/users/favourites`, {
             method: "GET",

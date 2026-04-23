@@ -16,3 +16,5 @@ export const PAGES_URL = {
     PROFILE: `/profile`,
     ORDERS: `/orders`
 }
+
+

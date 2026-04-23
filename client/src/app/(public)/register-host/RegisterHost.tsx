@@ -196,7 +196,6 @@ export default function RegisterHost() {
                             //Пізніше щось додамо
 
 
-
                     </SwiperSlide>
                 </Swiper>
             </div>

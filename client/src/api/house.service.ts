@@ -9,6 +9,7 @@ export const houseService = {
         return response.json()
     },
 
+    
     async registerHost(payload: any) {
         const response = await fetch(`${BASE_URL}/registerhost/registerHost`, {
             method: 'POST',
@@ -37,7 +38,6 @@ export const houseService = {
 
         return response.json();
     },
-
 
 
     async gethouseByid(id: number) {

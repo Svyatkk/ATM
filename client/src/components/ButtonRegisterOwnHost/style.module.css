@@ -3,17 +3,11 @@
     height: 40px;
     background-color: transparent;
     border: none;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
     box-sizing: border-box;
     transition: 0.3s;
 
-}
-
-@media (max-width: 1200px) {
-    .button {
-        display: none;
-    }
 }

@@ -108,6 +108,7 @@
     cursor: pointer;
 }
 
+
 .useBlock button {
     height: 40px;
     background-color: transparent;
@@ -152,6 +153,7 @@
 }
 
 
+
 @media (max-width: 1200px) {
     .nav {
         border: 1px solid yellow;
@@ -162,6 +164,11 @@
     }
 
     .temp {
+        display: none;
+    }
+
+
+    .but {
         display: none;
     }
 }
