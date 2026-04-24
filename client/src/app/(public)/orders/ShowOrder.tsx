@@ -16,6 +16,12 @@ export default function ShowOrder() {
             .catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+        bookingService.checkBookingStatus()
+            .catch(err => console.log(err))
+    }, [])
+
+
 
     const handleRemoveOrder = async (bookingId: number) => {
         try {

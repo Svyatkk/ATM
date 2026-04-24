@@ -2,6 +2,8 @@
 import { IFormRoom } from "@/types/IFormRoom.interface";
 import { BASE_URL, fetchOptions } from "./config";
 import { IBooking } from "@/types/booking.interface";
+
+
 export const bookingService = {
 
 
@@ -35,8 +37,16 @@ export const bookingService = {
         })
 
         return response.json()
+    },
 
 
+    async checkBookingStatus() {
+        const response = await fetch(`${BASE_URL}/checkBookingStatus`, {
+            method: "PUTCH",
+            ...fetchOptions,
+        })
+
+        return response.json()
     }
 
 

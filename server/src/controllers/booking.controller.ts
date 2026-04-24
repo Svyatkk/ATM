@@ -2,6 +2,7 @@ import { Context } from 'hono'
 import * as serviceBooking from '../services/booking.service'
 import { JWTPayload } from 'hono/utils/jwt/types'
 import { jwt } from 'hono/jwt';
+import { json } from 'node:stream/consumers';
 type Variables = {
     jwtPayload: any;
 };
@@ -24,6 +25,20 @@ export const createBooking = async (c: Context<{ Variables: Variables }>) => {
         return c.json({
             message: error.message || "Помилка при бронюванні"
         }, 400);
+    }
+}
+
+export const updateToPendingStatusBooking = async (c: Context<{ Variables: Variables }>) => {
+    try {
+        const payload = await c.get('jwtPayload') as any;
+
+        const booking = await serviceBooking.updateToPendingStatusBooking(payload.userId)
+
+
+        return c.json(booking)
+
+    } catch (error) {
+        console.error(error)
     }
 }
 

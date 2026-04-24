@@ -18,6 +18,7 @@ export default function BlockHotel({ host, inSearch, }: Props) {
     const [isFav, setIsFav] = useState(false)
     const maxLenght = 120
 
+
     useEffect(() => {
         userService.showFav()
             .then((favorites: IHost[]) => {
@@ -26,6 +27,7 @@ export default function BlockHotel({ host, inSearch, }: Props) {
             })
             .catch(err => console.log(err))
     }, [host.id])
+
 
     const handleFavClick = async (e: React.MouseEvent) => {
         e.stopPropagation()
@@ -44,7 +46,6 @@ export default function BlockHotel({ host, inSearch, }: Props) {
             setIsFav(!newFavState);
         }
     }
-
 
     return (
         <div className={`${styles.block} ${inSearch ? styles.inSearch : ''}`} onClick={() => route.push(`/houses/${host.id}`)}>

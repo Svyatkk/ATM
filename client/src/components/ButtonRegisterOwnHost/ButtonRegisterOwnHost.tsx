@@ -12,6 +12,8 @@ export default function RegisterHostButton() {
 
     return (
         <>
+
+
             <button className={styles.button} onClick={() => {
                 router.push(PAGES_URL.REGISTER_HOST)
             }}>Зареєструвати власне помешкання</button>

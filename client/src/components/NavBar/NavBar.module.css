@@ -71,7 +71,7 @@
     align-items: center;
     gap: 15px;
     padding: 5px;
-    border: 1px solid white;
+
 }
 
 .userAvatar {
@@ -106,8 +106,15 @@
 
 .h1 {
     cursor: pointer;
+    transition: 0.3s;
+
 }
 
+.h1:hover {
+    color: #7b7b7b;
+
+    transition: 0.3s;
+}
 
 .useBlock button {
     height: 40px;

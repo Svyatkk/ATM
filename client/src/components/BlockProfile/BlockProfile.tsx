@@ -31,7 +31,6 @@ export default function BlockProfile() {
     return (
         <>
 
-
             <section className={styles.block}>
 
                 {
@@ -50,6 +49,7 @@ export default function BlockProfile() {
                             </div>
                         )
                 }
+
             </section>
 
         </>

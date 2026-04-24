@@ -6,6 +6,7 @@ import RegisterHostButton from '../ButtonRegisterOwnHost/ButtonRegisterOwnHost'
 import { IUser } from '@/types/user.interface'
 import { useState } from 'react'
 import PanelButtons from '../PanelsButtons/PanelButtons'
+
 type Props = {
     show?: boolean
 }
