@@ -82,13 +82,22 @@ export const getSearchedHouses = async (c: Context) => {
 
         const checkIn = c.req.query('checkIn');
         const checkOut = c.req.query('checkOut');
-
+        const typeParam = c.req.query('type') as HouseType | undefined;
+        const animalsParam = c.req.query('animals');
+        const animals = animalsParam === 'true' ? true : undefined;
 
         if (!cityName || !capacity) {
             return c.json({ message: 'Місто та кількість гостей обовʼязкові' }, 400);
         }
 
-        const houses = await registerhouse.getSearchedHouses(cityName, capacity, checkIn, checkOut);
+        const houses = await registerhouse.getSearchedHouses(
+            cityName,
+            capacity,
+            checkIn,
+            checkOut,
+            typeParam,
+            animals
+        );
         return c.json(houses)
 
     } catch (error) {

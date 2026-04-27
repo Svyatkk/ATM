@@ -28,6 +28,8 @@ export default function SearchingPanel({ number }: Props) {
     const path = usePathname()
 
 
+
+
     const route = useRouter()
     const handleSearch = () => {
         if (!city) {
@@ -53,8 +55,13 @@ export default function SearchingPanel({ number }: Props) {
     }, [number])
 
 
+
     return (
         <>
+            <div cals>
+
+            </div>
+
             <div className={styles.searchingPanels}>
 
                 <label className={styles.panelCity} >

@@ -40,7 +40,6 @@ export default function NavBar() {
                 setBlockMenu(true)
             })
             .catch(err => {
-                console.log('Помилка авторизації:', err);
                 setUser(null);
             });
     }, [])

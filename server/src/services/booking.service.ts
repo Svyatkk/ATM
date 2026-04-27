@@ -77,6 +77,7 @@ export const updateToPendingStatusBooking = async (userId: number) => {
     const currentDate = new Date()
 
 
+
     const booking = await prisma.booking.updateMany({
         where: {
             userId: userId,
@@ -87,10 +88,11 @@ export const updateToPendingStatusBooking = async (userId: number) => {
         data: {
             status: 'CONFIRMED'
         }
-
     })
 
+
 }
+
 
 export const removeBooking = async (userid: number, bookingId: number) => {
 

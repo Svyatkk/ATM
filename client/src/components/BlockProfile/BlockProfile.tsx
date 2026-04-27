@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { IHost } from "@/types/host.interface"
 import { IUser } from "@/types/user.interface"
 
+
 import styles from './BlockProfile.module.css'
 
 
@@ -13,8 +14,6 @@ export default function BlockProfile() {
     const [hosts, setHosts] = useState<IHost[] | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
-
-
 
     useEffect(() => {
         userService.getUser()
@@ -41,6 +40,7 @@ export default function BlockProfile() {
                             <p>{user?.email}</p>
                         </div>
                     )
+
 
                         : (
                             <div>

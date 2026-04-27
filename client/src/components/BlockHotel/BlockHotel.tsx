@@ -28,7 +28,7 @@ export default function BlockHotel({ host, inSearch, }: Props) {
             .catch(err => console.log(err))
     }, [host.id])
 
-
+    
     const handleFavClick = async (e: React.MouseEvent) => {
         e.stopPropagation()
 

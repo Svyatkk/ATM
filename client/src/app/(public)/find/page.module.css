@@ -1,20 +1,368 @@
 .mainContainer {
-    margin-top: 50px;
     display: flex;
-
-}
-
-.hotels {
-    width: 100%;
+    gap: 24px;
+    max-width: 1280px;
+    margin: 40px auto;
+    padding: 0 20px;
+    align-items: flex-start;
     border: 1px solid black;
-    padding: 1px;
 }
+
 
 
 .sideBlock {
-    height: 700px;
+    width: 300px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e8ecf0;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    position: sticky;
+    top: 100px;
 
-    border: 5px solid black;
-    width: 40%;
+}
 
+.sideHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e8ecf0;
+}
+
+.sideTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.resetBtn {
+    background: none;
+    border: none;
+    color: #003b95;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.resetBtn:hover {
+    background: #ede9fe;
+}
+
+.filterGroup {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.filterGroup:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filterLabel {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 12px;
+}
+
+.typeGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.typeBtn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid #e8ecf0;
+    border-radius: 10px;
+    background: #fafafa;
+    color: #374151;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+}
+
+.typeBtn:hover {
+    border-color: #a5b4fc;
+    background: #f0f0ff;
+}
+
+/* background-color: #003b95; */
+
+
+.typeBtnActive {
+    border-color: #6366f1;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.toggleLabel {
+    font-size: 0.88rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.toggleSwitch {
+    width: 44px;
+    height: 24px;
+    background: #d1d5db;
+    border-radius: 999px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.25s;
+    flex-shrink: 0;
+}
+
+.toggleSwitch:has(.toggleThumbOn) {
+    background: #6366f1;
+}
+
+.toggleThumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.25s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggleThumbOn {
+    transform: translateX(20px);
+}
+
+.dateRow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dateField {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dateLabel {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.dateInput {
+    padding: 8px 10px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    color: #111827;
+    background: #fafafa;
+    outline: none;
+    transition: border-color 0.18s;
+    cursor: pointer;
+}
+
+.dateInput:focus {
+    border-color: #6366f1;
+    background: #fff;
+}
+
+.priceSlider {
+    width: 100%;
+    accent-color: #6366f1;
+    cursor: pointer;
+    margin: 6px 0 8px;
+}
+
+.priceRange {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.sortSelect {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    color: #374151;
+    background: #fafafa;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.18s;
+}
+
+.sortSelect:focus {
+    border-color: #6366f1;
+}
+
+.applyBtn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #003b95;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.applyBtn:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.applyBtn:active {
+    transform: translateY(0);
+}
+
+
+.hotels {
+    flex: 1;
+    min-width: 0;
+}
+
+.resultsHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e8ecf0;
+    gap: 12px;
+}
+
+.resultsTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 4px;
+}
+
+.resultsSubtitle {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.resultCount {
+    background: #f0f0ff;
+    color: #4f46e5;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.hotelsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.loadingWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    color: #9ca3af;
+    gap: 16px;
+    font-size: 1rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e8ecf0;
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.noResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.noResultsIcon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.noResults p {
+    font-size: 1.05rem;
+    margin: 0 0 16px;
+}
+
+.resetBtnInline {
+    padding: 10px 20px;
+    background: #eef2ff;
+    color: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.resetBtnInline:hover {
+    background: #e0e7ff;
+}
+
+
+@media (max-width: 768px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+
+    .sideBlock {
+        width: 100%;
+        position: static;
+    }
 }

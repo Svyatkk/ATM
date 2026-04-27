@@ -24,11 +24,24 @@ export const houseService = {
         return response.json();
     },
 
-    async getSearchedHouses(cityName: string, capacity: number, checkIn?: string, checkOut?: string,) {
-        let url = `${BASE_URL}/houses/find?city=${cityName}&capacity=${capacity}`;
+    async getSearchedHouses(
+        cityName: string,
+        capacity: number,
+        checkIn?: string,
+        checkOut?: string,
+        type?: string,
+        animals?: boolean
+    ) {
+        let url = `${BASE_URL}/houses/find?city=${encodeURIComponent(cityName)}&capacity=${capacity}`;
 
         if (checkIn && checkOut) {
             url += `&checkIn=${checkIn}&checkOut=${checkOut}`;
+        }
+        if (type) {
+            url += `&type=${type}`;
+        }
+        if (animals === true) {
+            url += `&animals=true`;
         }
 
         const response = await fetch(url, {

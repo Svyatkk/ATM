@@ -15,6 +15,7 @@ export const authMiddleware = async (c: Context<{ Variables: Variables }>, next:
         return c.json({ message: 'Неавторизовано: відсутній токен' }, 401);
     }
 
+
     try {
         const decodedPayload = await verify(token, JWT_SECRET, 'HS256');
         c.set('jwtPayload', decodedPayload);

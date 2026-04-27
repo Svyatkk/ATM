@@ -98,7 +98,14 @@ export const getHouses = async () => {
     return house
 }
 
-export const getSearchedHouses = async (cityName: string, capacity: number, checkIn?: string, checkOut?: string) => {
+export const getSearchedHouses = async (
+    cityName: string,
+    capacity: number,
+    checkIn?: string,
+    checkOut?: string,
+    type?: HouseType,
+    animals?: boolean
+) => {
 
     const validCapacity = isNaN(capacity) || capacity < 1 ? 1 : capacity;
 
@@ -117,6 +124,8 @@ export const getSearchedHouses = async (cityName: string, capacity: number, chec
                     mode: 'insensitive'
                 }
             },
+            ...(type ? { type } : {}),
+            ...(animals === true ? { animals: true } : {}),
             roomTypes: {
                 some: {
                     capacity: {
@@ -155,7 +164,8 @@ export const getSearchedHouses = async (cityName: string, capacity: number, chec
                         }
                     }
                 }
-            }, images: true
+            },
+            images: true
         }
     });
 
