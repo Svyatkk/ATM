@@ -6,9 +6,4 @@ const registerHouserRouter = new Hono()
 registerHouserRouter.post('/register', authMiddleware, registerRoom)
 
 
-
-
-
-
-
 export default registerHouserRouter

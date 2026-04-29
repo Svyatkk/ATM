@@ -13,6 +13,12 @@
 
 }
 
+.page div:first-child {
+    color: black;
+    width: 100%;
+}
+
+
 
 .hosts {
     display: grid;
@@ -20,7 +26,6 @@
     position: relative;
     padding-top: 40px;
     gap: 10px;
-    border: 1px solid black;
 
 }
 
@@ -34,15 +39,11 @@
 }
 
 
-
-
 .cities {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     width: 100%;
-
-
 }
 
 .city {
@@ -84,12 +85,9 @@
 }
 
 .Hotels {
-
     gap: 20px;
     display: flex;
     flex-direction: column;
-
-
 }
 
 
@@ -98,7 +96,6 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
-    border: 1px solid black;
 }
 
 

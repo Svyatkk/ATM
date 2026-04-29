@@ -8,8 +8,6 @@ export const bookTheRoom = async (userid: number, data: any) => {
 
     const checkOutDate = new Date(checkOut)
 
-
-
     const availableRoom = await prisma.room.findFirst({
         where: {
             roomTypeId: roomTypeId,
@@ -31,7 +29,6 @@ export const bookTheRoom = async (userid: number, data: any) => {
     }
 
 
-
     const booking = await prisma.booking.create({
         data: {
             checkIn: checkInDate,
@@ -45,7 +42,6 @@ export const bookTheRoom = async (userid: number, data: any) => {
     });
     return booking
 }
-
 
 
 export const getOrder = async (userid: number) => {

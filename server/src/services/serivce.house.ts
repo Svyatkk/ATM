@@ -98,19 +98,13 @@ export const getHouses = async () => {
     return house
 }
 
-export const getSearchedHouses = async (
-    cityName: string,
-    capacity: number,
-    checkIn?: string,
-    checkOut?: string,
-    type?: HouseType,
-    animals?: boolean
-) => {
+export const getSearchedHouses = async (cityName: string, capacity: number, checkIn?: string, checkOut?: string, type?: HouseType, animals?: boolean) => {
 
     const validCapacity = isNaN(capacity) || capacity < 1 ? 1 : capacity;
 
     const checkInDate = checkIn ? new Date(checkIn) : undefined;
     const checkOutDate = checkOut ? new Date(checkOut) : undefined;
+
 
     const hasDates =
         checkInDate && !isNaN(checkInDate.getTime()) &&

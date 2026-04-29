@@ -9,7 +9,7 @@ export const houseService = {
         return response.json()
     },
 
-    
+
     async registerHost(payload: any) {
         const response = await fetch(`${BASE_URL}/registerhost/registerHost`, {
             method: 'POST',
@@ -24,14 +24,7 @@ export const houseService = {
         return response.json();
     },
 
-    async getSearchedHouses(
-        cityName: string,
-        capacity: number,
-        checkIn?: string,
-        checkOut?: string,
-        type?: string,
-        animals?: boolean
-    ) {
+    async getSearchedHouses(cityName: string, capacity: number, checkIn?: string, checkOut?: string, type?: string, animals?: boolean) {
         let url = `${BASE_URL}/houses/find?city=${encodeURIComponent(cityName)}&capacity=${capacity}`;
 
         if (checkIn && checkOut) {
@@ -60,7 +53,6 @@ export const houseService = {
             ...fetchOptions,
             cache: 'no-store'
         })
-
 
         if (!response.ok) {
             const error = await response.json();

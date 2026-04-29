@@ -28,17 +28,11 @@ export default function SearchingPanel({ number }: Props) {
     const path = usePathname()
 
 
-
-
     const route = useRouter()
     const handleSearch = () => {
-        if (!city) {
-            setExceptCity(currenthost?.city?.name);
-        }
-        const searchCity = city || exceptCity;
+        const searchCity = city || currenthost?.city?.name || '';
 
         let searchPath = `/find?city=${searchCity}&capacity=${capacity}`;
-
 
         if (checkIn && checkOut) {
             searchPath += `&checkIn=${checkIn}&checkOut=${checkOut}`;
@@ -58,10 +52,6 @@ export default function SearchingPanel({ number }: Props) {
 
     return (
         <>
-            <div cals>
-
-            </div>
-
             <div className={styles.searchingPanels}>
 
                 <label className={styles.panelCity} >
@@ -105,6 +95,7 @@ export default function SearchingPanel({ number }: Props) {
                     </div>
 
                 </label>
+
 
                 <label className={styles.panelCountPeople} >
                     <span>

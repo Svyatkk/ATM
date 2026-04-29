@@ -7,6 +7,8 @@ export const fetchOptions = {
     }
 };
 
+
+
 export const PAGES_URL = {
     MAIN: `/`,
     REGISTER_HOST: `/register-host`,

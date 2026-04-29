@@ -28,30 +28,33 @@ export default function BlockProfile() {
 
 
     return (
-        <>
+        <section className={styles.block}>
+            {user ? (
+                <div className={styles.profile}>
+                    <div className={styles.avatar}>
+                        {user.name ? user.name[0].toUpperCase() : 'U'}
+                    </div>
+                    <h2 className={styles.name}>{user.name}</h2>
+                    <p className={styles.email}>{user.email}</p>
 
-            <section className={styles.block}>
+                    <div className={styles.infoSection}>
 
-                {
-                    user ? (
-                        <div className={styles.profile}>
-
-                            <p>{user?.name}</p>
-                            <p>{user?.email}</p>
+                        <div className={styles.infoItem}>
+                            <span className={styles.infoLabel}>ID користувача</span>
+                            <span className={styles.infoValue}>#{user.id}</span>
                         </div>
-                    )
 
-
-                        : (
-                            <div>
-                                <p>Ви не авторизовані</p>
-                                <button>Авторизуватися</button>
-                            </div>
-                        )
-                }
-
-            </section>
-
-        </>
+                    </div>
+                </div>
+            ) : (
+                <div className={styles.notAuth}>
+                    <div className={styles.avatar} style={{ background: '#e2e8f0', color: '#94a3b8', boxShadow: 'none' }}>
+                        ?
+                    </div>
+                    <p>Ви не авторизовані</p>
+                    <button className={styles.loginBtn}>Авторизуватися</button>
+                </div>
+            )}
+        </section>
     )
 }

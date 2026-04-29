@@ -68,14 +68,17 @@ export default function Home() {
     return (
         <>
             <div className={styles.page}>
+                <div>
+                    <h1>Міста</h1>
 
+                </div>
 
                 <div className={styles.cities}>
+
                     {cities.map((item) => {
                         return <div onClick={() => route.push(`/find?city=${item.name}&capacity=${1}`)} className={styles.city} key={item.id}>{item.name}</div>
                     })}
                 </div>
-
                 {
                     popularCities ?
                         (

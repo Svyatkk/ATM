@@ -18,7 +18,6 @@ export default function BlockHotel({ host, inSearch, }: Props) {
     const [isFav, setIsFav] = useState(false)
     const maxLenght = 120
 
-
     useEffect(() => {
         userService.showFav()
             .then((favorites: IHost[]) => {
@@ -28,7 +27,7 @@ export default function BlockHotel({ host, inSearch, }: Props) {
             .catch(err => console.log(err))
     }, [host.id])
 
-    
+
     const handleFavClick = async (e: React.MouseEvent) => {
         e.stopPropagation()
 
@@ -55,7 +54,7 @@ export default function BlockHotel({ host, inSearch, }: Props) {
                 <div className={styles.text}>
                     <p className={styles.name}>{host.name}</p>
                     <p className={styles.address}>{host.address}</p>
-                    <p>{inSearch ? host.description ? host.description : <p className={styles.desc}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p> : ''}</p>
+                    <p className={styles.desc}>{inSearch ? (host.description || 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.') : ''}</p>
                 </div>
 
 

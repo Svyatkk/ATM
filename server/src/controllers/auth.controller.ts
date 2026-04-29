@@ -11,6 +11,8 @@ export const register = async (c: Context) => {
 
         const { token } = await authService.loginUser({ email: body.email, password: body.password })
 
+
+
         setCookie(c, 'token', token, {
             httpOnly: true,
             secure: false,

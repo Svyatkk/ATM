@@ -1,12 +1,105 @@
 .block {
-    border: 1px solid black;
-    padding: 20px;
-    margin: 10px;
-    width: 250px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.3s ease;
+}
+
+.block:hover {
+    transform: translateY(-5px);
 }
 
 .profile {
-    border-radius: 10px;
-    margin: 10px;
-
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #003b95 0%, #006ce4 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0, 59, 149, 0.3);
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.email {
+    font-size: 16px;
+    color: #64748b;
+    margin: 0;
+}
+
+.infoSection {
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.infoItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.infoLabel {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.infoValue {
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.notAuth {
+    text-align: center;
+}
+
+.notAuth p {
+    color: #64748b;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.loginBtn {
+    background-color: #003b95;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+.loginBtn:hover {
+    background-color: #002d72;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 59, 149, 0.2);
+}

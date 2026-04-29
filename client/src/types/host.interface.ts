@@ -8,7 +8,6 @@ export type HostType = { name: "Apartment", hrefimg: '/img/apartlogo.jpg' }
 
 
 
-
 export type IHost = {
     id: number,
     name: string,

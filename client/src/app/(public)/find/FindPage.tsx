@@ -16,6 +16,7 @@ type Props = {
     checkOut?: string
 }
 
+
 type SortOption = 'default' | 'price_asc' | 'price_desc'
 
 export default function FindPage({ city, capacity, type, animals, checkIn, checkOut }: Props) {
@@ -127,13 +128,12 @@ export default function FindPage({ city, capacity, type, animals, checkIn, check
                     </div>
                 </div>
 
-
                 <div className={styles.filterGroup}>
                     <p className={styles.filterLabel}>Умови проживання</p>
                     <label className={styles.toggle}>
                         <span className={styles.toggleLabel}>Дозволені тварини</span>
                         <div className={styles.toggleSwitch} onClick={() => setAllowsPets(p => !p)}>
-                            <div className={`${styles.toggleThumb} ${allowsPets ? styles.toggleThumbOn : ''}`} />
+                            <div className={`${styles.tog1gleThumb} ${allowsPets ? styles.toggleThumbOn : ''}`} />
                         </div>
                     </label>
                 </div>

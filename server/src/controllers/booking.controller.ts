@@ -15,10 +15,7 @@ export const createBooking = async (c: Context<{ Variables: Variables }>) => {
 
         const booking = await serviceBooking.bookTheRoom(payload.userId, body)
 
-
         return c.json(booking)
-
-
     } catch (error: any) {
         console.error("Помилка бронювання:", error.message);
 
@@ -33,7 +30,6 @@ export const updateToPendingStatusBooking = async (c: Context<{ Variables: Varia
         const payload = await c.get('jwtPayload') as any;
 
         const booking = await serviceBooking.updateToPendingStatusBooking(payload.userId)
-
 
         return c.json(booking)
 
@@ -50,11 +46,7 @@ export const removeOrder = async (c: Context<{ Variables: Variables }>) => {
 
         await serviceBooking.removeBooking(payload.userid, bookingId)
 
-
-
         return c.json({ message: "Успішно видалено" })
-
-
     } catch (error) {
         console.log(error)
         return c.json({ message: "Помилка при виаленні замовлення" }, 500)

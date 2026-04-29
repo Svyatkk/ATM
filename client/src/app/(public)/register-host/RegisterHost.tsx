@@ -20,7 +20,6 @@ import { IFormRoom } from '@/types/IFormRoom.interface'
 
 export default function RegisterHost() {
 
-
     const [rooms, setRooms] = useState<IFormRoom[]>([])
 
     const updateRoomData = (roomId: string, fieldName: string, newValue: any) => {
@@ -163,40 +162,46 @@ export default function RegisterHost() {
                     </SwiperSlide>
 
                     <SwiperSlide className={styles.slide3}>
+                        <h3>Налаштування кімнат</h3>
+                        <div className={styles.roomsList}>
+                            {rooms?.map((room) => {
+                                return (
+                                    <RegisterRoom
+                                        key={room.id}
+                                        roomData={room}
+                                        onChange={updateRoomData}
+                                    />
+                                )
+                            })}
+                        </div>
+                        <div className={styles.buttons}>
+                            <button className={styles.addRoomBtn} onClick={(e) => {
+                                e.preventDefault()
+                                const newRoom: IFormRoom = {
+                                    id: Date.now().toString(),
+                                    roomNumber: '',
+                                    roomType: '',
+                                    pricePerNight: 0,
+                                    capacity: 1
+                                };
 
-                        <button onClick={registerhost} className={styles.register}>Register</button>
+                                setRooms([...(rooms || []), newRoom])
 
-                        <button onClick={(e) => {
+                            }}>Додати кімнату</button>
 
-                            e.preventDefault()
-                            const newRoom: IFormRoom = {
-                                id: Date.now().toString(),
-                                roomNumber: '',
-                                roomType: '',
-                                pricePerNight: 0,
-                                capacity: 1
-                            };
+                        </div>
 
-                            setRooms([...(rooms || []), newRoom])
-
-                        }}>Додати ккімнату</button>
-                        {rooms?.map((room) => {
-                            return (
-                                <RegisterRoom
-                                    key={room.id}
-                                    roomData={room}
-                                    onChange={updateRoomData}
-                                />
-                            )
-                        })}
 
                     </SwiperSlide>
 
                     <SwiperSlide className={styles.slide3}>
-                            //Пізніше щось додамо
-
-
+                        <h3>Готово до реєстрації?</h3>
+                        <p style={{ color: '#64748b', textAlign: 'center', marginBottom: '20px' }}>
+                            Перевірте всі введені дані перед відправкою.
+                        </p>
+                        <button onClick={registerhost} className={styles.register}>Зареєструвати все</button>
                     </SwiperSlide>
+
                 </Swiper>
             </div>
         </>
