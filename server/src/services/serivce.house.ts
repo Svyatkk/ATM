@@ -110,6 +110,25 @@ export const getSearchedHouses = async (cityName: string, capacity: number, chec
         checkInDate && !isNaN(checkInDate.getTime()) &&
         checkOutDate && !isNaN(checkOutDate.getTime());
 
+    const bookingFilter = hasDates ? {
+        none: {
+            status: { not: 'CANCELLED' },
+            checkIn: { lt: checkOutDate! },
+            checkOut: { gt: checkInDate! }
+        }
+    } : undefined;
+
+    const roomTypeFilter = {
+        capacity: {
+            gte: validCapacity
+        },
+        rooms: {
+            some: {
+                bookings: bookingFilter
+            }
+        }
+    };
+
     const houses = await prisma.house.findMany({
         where: {
             city: {
@@ -121,43 +140,13 @@ export const getSearchedHouses = async (cityName: string, capacity: number, chec
             ...(type ? { type } : {}),
             ...(animals === true ? { animals: true } : {}),
             roomTypes: {
-                some: {
-                    capacity: {
-                        gte: validCapacity
-                    },
-                    rooms: {
-                        some: {
-                            bookings: hasDates ? {
-                                none: {
-                                    status: { not: 'CANCELLED' },
-                                    checkIn: { lt: checkOutDate! },
-                                    checkOut: { gt: checkInDate! }
-                                }
-                            } : undefined
-                        }
-                    }
-                }
+                some: roomTypeFilter
             },
         },
         include: {
             city: true,
             roomTypes: {
-                where: {
-                    capacity: {
-                        gte: validCapacity
-                    },
-                    rooms: {
-                        some: {
-                            bookings: hasDates ? {
-                                none: {
-                                    status: { not: 'CANCELLED' },
-                                    checkIn: { lt: checkOutDate! },
-                                    checkOut: { gt: checkInDate! }
-                                }
-                            } : undefined
-                        }
-                    }
-                }
+                where: roomTypeFilter
             },
             images: true
         }
