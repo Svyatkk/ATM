@@ -1,8 +1,7 @@
 import { Context, Next } from 'hono';
 import { getCookie } from 'hono/cookie';
 import { verify } from 'hono/jwt';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key_for_dev';
+import { JWT_SECRET } from '../config/jwt.config';
 
 type Variables = {
     jwtPayload: any;
