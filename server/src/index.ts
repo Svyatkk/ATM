@@ -1,6 +1,5 @@
 import 'dotenv/config'
 import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client'
 import { Pool } from 'pg'
 import { PrismaPg } from '@prisma/adapter-pg'
@@ -16,7 +15,6 @@ import bookingRoute from './routes/booking.route'
 const app = new Hono()
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key_for_dev';
-const connectionString = process.env.DATABASE_URL
 const pool = new Pool({ connectionString })
 const adapter = new PrismaPg(pool)
 export const prisma = new PrismaClient({ adapter })
