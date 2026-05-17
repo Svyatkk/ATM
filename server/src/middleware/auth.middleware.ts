@@ -4,8 +4,15 @@ import { verify } from 'hono/jwt';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_key_for_dev';
 
+type JwtPayload = {
+  userId: number;
+  email: string;
+  iat?: number;
+  exp?: number;
+};
+
 type Variables = {
-    jwtPayload: any;
+  jwtPayload: JwtPayload;
 };
 
 export const authMiddleware = async (c: Context<{ Variables: Variables }>, next: Next) => {
