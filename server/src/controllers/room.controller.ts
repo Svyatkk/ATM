@@ -1,6 +1,6 @@
 
 import { Context } from 'hono'
-import * as registerhouse from '../services/serivce.house'
+import * as registerhouse from '../services/service.house'
 import { JWTPayload } from 'hono/utils/jwt/types'
 import * as roomService from '../services/service.room';
 type Variables = {
